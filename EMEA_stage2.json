@@ -1,0 +1,352 @@
+[
+    {
+        "summary": "FUT Esports vs KOI",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-18T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-18T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "BBL Esports vs FNATIC",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-19T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-19T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Heretics vs Natus Vincere",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-19T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-19T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Vitality vs Team Liquid",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-20T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-20T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "GIANTX vs Gentle Mates",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-20T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-20T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Natus Vincere vs FUT Esports",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-21T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-21T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "BBL Esports vs Karmine Corp",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-21T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-21T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "KOI vs GIANTX",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-25T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-25T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "FNATIC vs Team Vitality",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-26T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-26T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Heretics vs FUT Esports",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-26T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-26T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "BBL Esports vs Team Liquid",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-27T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-27T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Natus Vincere vs GIANTX",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-27T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-27T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "KOI vs Gentle Mates",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-28T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-28T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "FNATIC vs Karmine Corp",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-28T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-28T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Heretics vs GIANTX",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-03T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-03T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "FUT Esports vs Gentle Mates",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-03T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-03T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "KOI vs Natus Vincere",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-04T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-04T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Liquid vs Karmine Corp",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-04T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-04T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "BBL Esports vs Team Vitality",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-05T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-05T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Heretics vs Gentle Mates",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-05T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-05T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "FUT Esports vs GIANTX",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-09T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-09T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Heretics vs KOI",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-10T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-10T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "FNATIC vs Team Liquid",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-10T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-10T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Natus Vincere vs Gentle Mates",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-11T16:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-11T18:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "Team Vitality vs Karmine Corp",
+        "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-07-11T19:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-07-11T21:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    }
+]
