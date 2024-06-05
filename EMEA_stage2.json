@@ -1,6 +1,62 @@
 [
     {
-        "summary": "FUT Esports vs KOI",
+        "summary": "100 Thieves vs Team Heretics | Masters Shanghai - Lower Round 3",
+        "description": "https://www.vlr.gg/event/matches/1999/champions-tour-2024-masters-shanghai/?series_id=3974",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-07T11:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-07T13:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "G2 Esports vs Gen.G | Masters Shanghai - Upper Finals",
+        "description": "https://www.vlr.gg/event/matches/1999/champions-tour-2024-masters-shanghai/?series_id=3974",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-07T08:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-07T10:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "TBD vs TBD | Masters Shanghai - Lower Grand Finals",
+        "description": "https://www.vlr.gg/event/matches/1999/champions-tour-2024-masters-shanghai/?series_id=3974",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-08T08:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-08T10:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "TBD vs TBD | Masters Shanghai - Grand Finals",
+        "description": "https://www.vlr.gg/event/matches/1999/champions-tour-2024-masters-shanghai/?series_id=3974",
+        "colorId": "6",
+        "start": {
+            "dateTime": "2024-06-09T08:00:00+01:00"
+        },
+        "end": {
+            "dateTime": "2024-06-09T10:00:00+01:00"
+        },
+        "reminders": {
+            "useDefault": false
+        }
+    },
+    {
+        "summary": "FUT Esports vs KOI | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -14,7 +70,7 @@
         }
     },
     {
-        "summary": "BBL Esports vs FNATIC",
+        "summary": "BBL Esports vs FNATIC | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -28,7 +84,7 @@
         }
     },
     {
-        "summary": "Team Heretics vs Natus Vincere",
+        "summary": "Team Heretics vs Natus Vincere | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -42,7 +98,7 @@
         }
     },
     {
-        "summary": "Team Vitality vs Team Liquid",
+        "summary": "Team Vitality vs Team Liquid | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -56,7 +112,7 @@
         }
     },
     {
-        "summary": "GIANTX vs Gentle Mates",
+        "summary": "GIANTX vs Gentle Mates | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -70,7 +126,7 @@
         }
     },
     {
-        "summary": "Natus Vincere vs FUT Esports",
+        "summary": "Natus Vincere vs FUT Esports | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -84,7 +140,7 @@
         }
     },
     {
-        "summary": "BBL Esports vs Karmine Corp",
+        "summary": "BBL Esports vs Karmine Corp | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -98,7 +154,7 @@
         }
     },
     {
-        "summary": "KOI vs GIANTX",
+        "summary": "KOI vs GIANTX | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -112,7 +168,7 @@
         }
     },
     {
-        "summary": "FNATIC vs Team Vitality",
+        "summary": "FNATIC vs Team Vitality | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -126,7 +182,7 @@
         }
     },
     {
-        "summary": "Team Heretics vs FUT Esports",
+        "summary": "Team Heretics vs FUT Esports | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -140,7 +196,7 @@
         }
     },
     {
-        "summary": "BBL Esports vs Team Liquid",
+        "summary": "BBL Esports vs Team Liquid | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -154,7 +210,7 @@
         }
     },
     {
-        "summary": "Natus Vincere vs GIANTX",
+        "summary": "Natus Vincere vs GIANTX | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -168,7 +224,7 @@
         }
     },
     {
-        "summary": "KOI vs Gentle Mates",
+        "summary": "KOI vs Gentle Mates | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -182,7 +238,7 @@
         }
     },
     {
-        "summary": "FNATIC vs Karmine Corp",
+        "summary": "FNATIC vs Karmine Corp | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -196,7 +252,7 @@
         }
     },
     {
-        "summary": "Team Heretics vs GIANTX",
+        "summary": "Team Heretics vs GIANTX | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -210,7 +266,7 @@
         }
     },
     {
-        "summary": "FUT Esports vs Gentle Mates",
+        "summary": "FUT Esports vs Gentle Mates | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -224,7 +280,7 @@
         }
     },
     {
-        "summary": "KOI vs Natus Vincere",
+        "summary": "KOI vs Natus Vincere | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -238,7 +294,7 @@
         }
     },
     {
-        "summary": "Team Liquid vs Karmine Corp",
+        "summary": "Team Liquid vs Karmine Corp | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -252,7 +308,7 @@
         }
     },
     {
-        "summary": "BBL Esports vs Team Vitality",
+        "summary": "BBL Esports vs Team Vitality | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -266,7 +322,7 @@
         }
     },
     {
-        "summary": "Team Heretics vs Gentle Mates",
+        "summary": "Team Heretics vs Gentle Mates | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -280,7 +336,7 @@
         }
     },
     {
-        "summary": "FUT Esports vs GIANTX",
+        "summary": "FUT Esports vs GIANTX | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -294,7 +350,7 @@
         }
     },
     {
-        "summary": "Team Heretics vs KOI",
+        "summary": "Team Heretics vs KOI | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -308,7 +364,7 @@
         }
     },
     {
-        "summary": "FNATIC vs Team Liquid",
+        "summary": "FNATIC vs Team Liquid | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -322,7 +378,7 @@
         }
     },
     {
-        "summary": "Natus Vincere vs Gentle Mates",
+        "summary": "Natus Vincere vs Gentle Mates | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
@@ -336,7 +392,7 @@
         }
     },
     {
-        "summary": "Team Vitality vs Karmine Corp",
+        "summary": "Team Vitality vs Karmine Corp | Champions Tour 2024: EMEA Stage 2",
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
