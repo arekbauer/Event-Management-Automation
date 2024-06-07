@@ -28,7 +28,7 @@
         }
     },
     {
-        "summary": "TBD vs TBD | Masters Shanghai - Lower Grand Finals",
+        "summary": "G2 Esports vs Team Heretics | Masters Shanghai - Lower Grand Finals",
         "description": "https://www.vlr.gg/event/matches/1999/champions-tour-2024-masters-shanghai/?series_id=3974",
         "colorId": "6",
         "start": {
@@ -42,7 +42,7 @@
         }
     },
     {
-        "summary": "TBD vs TBD | Masters Shanghai - Grand Finals",
+        "summary": "Gen.G vs TBD | Masters Shanghai - Grand Finals",
         "description": "https://www.vlr.gg/event/matches/1999/champions-tour-2024-masters-shanghai/?series_id=3974",
         "colorId": "6",
         "start": {
@@ -74,7 +74,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-19T16:00:00+01:00"
+            "dateTime": "2024-06-19T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-19T18:00:00+01:00"
@@ -88,7 +88,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-19T19:00:00+01:00"
+            "dateTime": "2024-06-19T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-19T21:00:00+01:00"
@@ -102,7 +102,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-20T16:00:00+01:00"
+            "dateTime": "2024-06-20T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-20T18:00:00+01:00"
@@ -116,7 +116,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-20T19:00:00+01:00"
+            "dateTime": "2024-06-20T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-20T21:00:00+01:00"
@@ -130,7 +130,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-21T16:00:00+01:00"
+            "dateTime": "2024-06-21T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-21T18:00:00+01:00"
@@ -144,7 +144,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-21T19:00:00+01:00"
+            "dateTime": "2024-06-21T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-21T21:00:00+01:00"
@@ -172,7 +172,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-26T16:00:00+01:00"
+            "dateTime": "2024-06-26T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-26T18:00:00+01:00"
@@ -186,7 +186,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-26T19:00:00+01:00"
+            "dateTime": "2024-06-26T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-26T21:00:00+01:00"
@@ -200,7 +200,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-27T16:00:00+01:00"
+            "dateTime": "2024-06-27T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-27T18:00:00+01:00"
@@ -214,7 +214,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-27T19:00:00+01:00"
+            "dateTime": "2024-06-27T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-27T21:00:00+01:00"
@@ -228,7 +228,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-28T16:00:00+01:00"
+            "dateTime": "2024-06-28T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-28T18:00:00+01:00"
@@ -242,7 +242,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-06-28T19:00:00+01:00"
+            "dateTime": "2024-06-28T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-06-28T21:00:00+01:00"
@@ -256,7 +256,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-03T16:00:00+01:00"
+            "dateTime": "2024-07-03T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-03T18:00:00+01:00"
@@ -270,7 +270,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-03T19:00:00+01:00"
+            "dateTime": "2024-07-03T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-03T21:00:00+01:00"
@@ -284,7 +284,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-04T16:00:00+01:00"
+            "dateTime": "2024-07-04T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-04T18:00:00+01:00"
@@ -298,7 +298,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-04T19:00:00+01:00"
+            "dateTime": "2024-07-04T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-04T21:00:00+01:00"
@@ -312,7 +312,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-05T16:00:00+01:00"
+            "dateTime": "2024-07-05T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-05T18:00:00+01:00"
@@ -326,7 +326,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-05T19:00:00+01:00"
+            "dateTime": "2024-07-05T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-05T21:00:00+01:00"
@@ -354,7 +354,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-10T16:00:00+01:00"
+            "dateTime": "2024-07-10T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-10T18:00:00+01:00"
@@ -368,7 +368,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-10T19:00:00+01:00"
+            "dateTime": "2024-07-10T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-10T21:00:00+01:00"
@@ -382,7 +382,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-11T16:00:00+01:00"
+            "dateTime": "2024-07-11T17:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-11T18:00:00+01:00"
@@ -396,7 +396,7 @@
         "description": "https://www.vlr.gg/event/matches/2094/champions-tour-2024-emea-stage-2/?series_id=4029",
         "colorId": "6",
         "start": {
-            "dateTime": "2024-07-11T19:00:00+01:00"
+            "dateTime": "2024-07-11T20:00:00+01:00"
         },
         "end": {
             "dateTime": "2024-07-11T21:00:00+01:00"
