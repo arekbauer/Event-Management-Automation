@@ -1,6 +1,7 @@
 import os.path
 import datetime as dt 
 import json
+from datetime import datetime
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -31,7 +32,7 @@ def main():
             token.write(creds.to_json())
 
     # open the fixture list you want
-    with open("EMEA_stage2.json") as fixtures: 
+    with open("EMEA_playoffs.json") as fixtures: 
         fixture_list = json.load(fixtures)
     
     # Do the juicy stuff
@@ -40,7 +41,7 @@ def main():
         calendarID = "871cadf79004e379fc8630cbcf69b75d050eb8a581b71fddd02ed3a1f4f69034@group.calendar.google.com"
         
         # Do you want to delete all current events in the calendar? 
-        #delete_all_events(service, calendarID)
+        # delete_future_events(service, calendarID)
         
         # for each fixture in the json file...
         for fixture in fixture_list:
@@ -70,14 +71,18 @@ def is_duplicate(service, calendar_id, start, end):
     return len(events) == 0
 
 '''Function to delete all the events in given calendar ID'''
-def delete_all_events(service, calendar_id):
+def delete_future_events(service, calendar_id):
+    now = datetime.now(dt.timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
+    
     events = service.events().list(calendarId=calendar_id).execute()
     for event in events.get('items', []):
-        try:
-            service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
-            print(f"Deleted event: {event['summary']}")
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        start = event.get('start').get('dateTime', event.get('start').get('date'))
+        if start >= now:
+            try:
+                service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
+                print(f"Deleted event: {event['summary']}")
+            except Exception as e:
+                print(f"An error occurred: {e}")
                 
 if __name__ == "__main__":
     main()
