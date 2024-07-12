@@ -8,13 +8,17 @@ import logging
 from googleapiclient.errors import HttpError
 
 """Function to add events to calendar"""
-def add_events(service, calendarID, event):
+def add_events(service, calendarID, event, duplicate_check=True):
     try: 
-        if is_duplicate(service, calendarID, event['start']['dateTime'], event['end']['dateTime']):
+        if duplicate_check:
+            if is_duplicate(service, calendarID, event['start']['dateTime'], event['end']['dateTime']):
+                event = service.events().insert(calendarId=calendarID, body=event).execute()
+                print(f"Event '{event['summary']}' created")
+            else:
+                print(f"Time slot for event '{event['summary']}' is not available. Event not created.")
+        else:
             event = service.events().insert(calendarId=calendarID, body=event).execute()
             print(f"Event '{event['summary']}' created")
-        else:
-            print(f"Time slot for event '{event['summary']}' is not available. Event not created.")
 
     except HttpError as error: 
         print("An error has occured", error)

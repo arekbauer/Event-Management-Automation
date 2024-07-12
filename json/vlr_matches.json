@@ -2,7 +2,7 @@
     {
         "team1": "Cloud9",
         "team2": "KR\u00dc Esports",
-        "time_until_match": "2h 19m from now",
+        "time_until_match": "44m from now",
         "match_series": "Regular Season: Week 4",
         "match_event": "Champions Tour 2024: Americas Stage 2",
         "unix_timestamp": "2024-07-13 00:00:00",
@@ -11,7 +11,7 @@
     {
         "team1": "Paper Rex",
         "team2": "Gen.G",
-        "time_until_match": "10h 19m from now",
+        "time_until_match": "8h 44m from now",
         "match_series": "Playoffs: Upper Semifinals",
         "match_event": "Champions Tour 2024: Pacific Stage 2",
         "unix_timestamp": "2024-07-13 08:00:00",
@@ -20,7 +20,7 @@
     {
         "team1": "DRX",
         "team2": "Talon Esports",
-        "time_until_match": "12h 19m from now",
+        "time_until_match": "10h 44m from now",
         "match_series": "Playoffs: Upper Semifinals",
         "match_event": "Champions Tour 2024: Pacific Stage 2",
         "unix_timestamp": "2024-07-13 10:00:00",
@@ -29,7 +29,7 @@
     {
         "team1": "Evil Geniuses",
         "team2": "MIBR",
-        "time_until_match": "23h 19m from now",
+        "time_until_match": "21h 44m from now",
         "match_series": "Regular Season: Week 4",
         "match_event": "Champions Tour 2024: Americas Stage 2",
         "unix_timestamp": "2024-07-13 21:00:00",
@@ -38,7 +38,7 @@
     {
         "team1": "Leviat\u00e1n",
         "team2": "FURIA",
-        "time_until_match": "1d 2h from now",
+        "time_until_match": "1d 0h from now",
         "match_series": "Regular Season: Week 4",
         "match_event": "Champions Tour 2024: Americas Stage 2",
         "unix_timestamp": "2024-07-14 00:00:00",
@@ -47,7 +47,7 @@
     {
         "team1": "TBD",
         "team2": "TBD",
-        "time_until_match": "1d 10h from now",
+        "time_until_match": "1d 8h from now",
         "match_series": "Playoffs: Upper Final",
         "match_event": "Champions Tour 2024: Pacific Stage 2",
         "unix_timestamp": "2024-07-14 08:00:00",
@@ -56,7 +56,7 @@
     {
         "team1": "TBD",
         "team2": "TBD",
-        "time_until_match": "1d 13h from now",
+        "time_until_match": "1d 11h from now",
         "match_series": "Playoffs: Lower Round 1",
         "match_event": "Champions Tour 2024: Pacific Stage 2",
         "unix_timestamp": "2024-07-14 11:00:00",

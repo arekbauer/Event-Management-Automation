@@ -1,9 +1,7 @@
 import os.path
 import datetime as dt 
-import json
 from datetime import datetime
 import utils
-import requests
 import api_tools as api
 import logging
 
@@ -23,16 +21,16 @@ def main():
     
     # Check if matches are present
     if matches: 
-        match_details = api.extract_vlr_matches(matches,whiteList) # Extract the details we need from API call
+        match_list = api.extract_vlr_matches(matches,whiteList) # Extract the details we need from API call
         
         # Save the matches to an external json file
-        api.save_data_to_file(match_details, cache_file)
+        api.save_data_to_file(match_list, cache_file)
         
         # Set some variables
         service = build("calendar","v3", credentials=creds)
         calendarID = "871cadf79004e379fc8630cbcf69b75d050eb8a581b71fddd02ed3a1f4f69034@group.calendar.google.com"
         
-        # Do you want to delete all current events in the calendar? 
+        # Do you want to delete all future events in the calendar? 
         utils.delete_future_events(service, calendarID)
         
         # Go through each match from json file
