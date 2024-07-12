@@ -2,87 +2,75 @@ import os.path
 import datetime as dt 
 import json
 from datetime import datetime
+import utils
+import requests
+import api_tools as api
+import logging
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
-def main():
+def main(): 
+    """Script for VLR Matches"""
+    
+    # Fetch the data from the API
+    events = api.fetch_api_data(api_url)
+    matches = events.get('data',{}).get('segments',[])
+    
+    # Check if matches are present
+    if matches: 
+        match_details = api.extract_vlr_matches(matches,whiteList) # Extract the details we need from API call
+        
+        # Save the matches to an external json file
+        api.save_data_to_file(match_details, cache_file)
+        
+        # Set some variables
+        service = build("calendar","v3", credentials=creds)
+        calendarID = "871cadf79004e379fc8630cbcf69b75d050eb8a581b71fddd02ed3a1f4f69034@group.calendar.google.com"
+        
+        # Do you want to delete all current events in the calendar? 
+        utils.delete_future_events(service, calendarID)
+        
+        # Go through each match from json file
+        for match in api.load_data_from_file(cache_file):
+            
+            # Converts a VLR format to Google Calendar format
+            event = api.create_vlr_event(match)
+            
+            # Adds event to calendar
+            utils.add_events(service, calendarID, event)     
+    else:
+        logging.warning("No matches found in the API response.")
+           
+                
+if __name__ == "__main__":
+    """Handles all of Google OAuth"""
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    if os.path.exists("json/token.json"):
+        creds = Credentials.from_authorized_user_file("json/token.json", SCOPES)
 
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file("json/credentials.json", SCOPES)
             creds = flow.run_local_server(port=0)
     
         # Save the credentials for the next run
-        with open("token.json", "w") as token:
+        with open("json/token.json", "w") as token:
             token.write(creds.to_json())
-
-    # open the fixture list you want
-    with open("EMEA_playoffs.json") as fixtures: 
-        fixture_list = json.load(fixtures)
-    
-    # Do the juicy stuff
-    try:
-        service = build("calendar","v3", credentials=creds)
-        calendarID = "871cadf79004e379fc8630cbcf69b75d050eb8a581b71fddd02ed3a1f4f69034@group.calendar.google.com"
-        
-        # Do you want to delete all current events in the calendar? 
-        # delete_future_events(service, calendarID)
-        
-        # for each fixture in the json file...
-        for fixture in fixture_list:
-            start = fixture['start']['dateTime']
-            end = fixture['end']['dateTime']
             
-            if is_duplicate(service, calendarID, start, end):
-                event = service.events().insert(calendarId=calendarID, body=fixture).execute()
-                print(f"Event '{fixture['summary']}' created")
-            else:
-                print(f"Time slot for event '{fixture['summary']}' is not available. Event not created.")
-            
-    except HttpError as error: 
-        print("An error has occured", error)
-        
-'''Function to check if the event already exists in the calendar'''
-def is_duplicate(service, calendar_id, start, end):
-    # Grabs any events between the start and end time
-    events_result = service.events().list(
-        calendarId=calendar_id,
-        timeMin=start,
-        timeMax=end,
-        singleEvents=True,
-        orderBy='startTime'
-    ).execute()
-    events = events_result.get('items', [])
-    return len(events) == 0
-
-'''Function to delete all the events in given calendar ID'''
-def delete_future_events(service, calendar_id):
-    now = datetime.now(dt.timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
+    # Define some variables
+    api_url = "https://vlrggapi.vercel.app/match?q=upcoming"
+    cache_file = "json/vlr_matches.json"
+    whiteList = ["Champions Tour 2024"]
     
-    events = service.events().list(calendarId=calendar_id).execute()
-    for event in events.get('items', []):
-        start = event.get('start').get('dateTime', event.get('start').get('date'))
-        if start >= now:
-            try:
-                service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
-                print(f"Deleted event: {event['summary']}")
-            except Exception as e:
-                print(f"An error occurred: {e}")
-                
-if __name__ == "__main__":
     main()
