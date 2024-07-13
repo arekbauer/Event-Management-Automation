@@ -1,6 +1,4 @@
 # Remove my google creds
-credentials.json
-
-token.json
+json/*
 
 __pycache__

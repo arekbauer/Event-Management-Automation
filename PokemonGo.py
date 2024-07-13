@@ -49,7 +49,7 @@ def main():
         new_event = poke.create_pokemon_go_event(event)
         
         # Adds event to calendar
-        utils.add_events(service, calendarID, new_event, duplicate_check=True) 
+        utils.add_events(service, calendarID, new_event, duplicate_check=False) 
             
                 
 if __name__ == "__main__":
