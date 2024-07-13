@@ -44,7 +44,7 @@ def create_vlr_event(match):
     # Convert time to valid format 
     start_time, end_time = convert_time_iso(match['unix_timestamp'])
     event = {
-        "summary": f"{match['team1']} vs {match['team2']} | {match['match_event']}",
+        "summary": f"{match['team1']} vs {match['team2']} | {match['match_event'].split(':', 1)[1].strip()} - {match['match_series']}",
         "description": f"{match['match_page']}",
         "colorId": "6",
         "start": {
