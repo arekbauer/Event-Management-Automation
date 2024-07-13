@@ -1,16 +1,14 @@
-import os.path
 import datetime as dt 
-import json
 from datetime import datetime
-import requests
-import logging
+import logging as log
 
 """
 TODO:
     Create functions for: 
-        - Grabbing certain event types 
-        - Filtering Extra details - event bonuses, can be shiny etc. 
-        - If its a raid hour or new event - only grab the start date, make it an all day event
+        - If the event has extraData extract it:
+            - What can be shiny? 
+            - What are the bonuses? 
+        - This may need to be done for event by event bases e.g. check if its a com day event, or change of raids etc
 """
 OFFSET = "+01:00"
 
