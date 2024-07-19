@@ -4,7 +4,7 @@ import logging as log
 
 """
 TODO:
-    Find a way to not create duplicate functions for all-day events
+    Find the best way to correctly log things (logging to file?)
 """
 OFFSET = "+01:00"
 
