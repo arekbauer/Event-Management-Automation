@@ -64,6 +64,8 @@ event_bonuses_handlers = {
 """Function to filter out and store only wanted events"""
 def filter_event_types(events, whiteList):
     filtered_events = []
+    today = datetime.today().date()
+    
     for event in events:
         event_data = {
             "name": event.get('name'),
@@ -73,8 +75,12 @@ def filter_event_types(events, whiteList):
             "end": event.get('end'),
             "extraData": event.get('extraData')
         }
-        # Check if any whitelist phrase is in 'eventType'
-        if any(phrase in event_data['eventType'] for phrase in whiteList):
+        
+        # Grab the start date and convert to comparable format
+        startDate = datetime.fromisoformat(event.get('start').split('T')[0]).date()
+        
+        # Check if any whitelist phrase is in 'eventType' AND if the startdate is after today
+        if any(phrase in event_data['eventType'] for phrase in whiteList) and startDate > today:
             filtered_events.append(event_data)
             
     return filtered_events
