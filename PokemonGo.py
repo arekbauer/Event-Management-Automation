@@ -79,6 +79,6 @@ if __name__ == "__main__":
     whiteList = ["community-day", "event", 
                  "live-event", "pokemon-go-fest", "pokemon-spotlight-hour", 
                  "season", "pokemon-go-tour", "raid-day", "elite-raids", 
-                 "raid-battles", "raid-hour", "raid-weekend"]
+                 "raid-battles", "raid-hour", "raid-weekend", "go-battle-league"] # Make sure to edit whiteList in all_day_event() if have to
     
     main()

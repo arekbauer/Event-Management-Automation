@@ -31,7 +31,7 @@ def main():
         calendarID = "871cadf79004e379fc8630cbcf69b75d050eb8a581b71fddd02ed3a1f4f69034@group.calendar.google.com"
         
         # Do you want to delete all future events in the calendar? 
-        utils.delete_future_events(service, calendarID)
+        #utils.delete_future_events(service, calendarID)
         
         # Go through each match from json file
         for match in api.load_data_from_file(cache_file):
