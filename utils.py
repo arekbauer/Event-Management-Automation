@@ -3,7 +3,7 @@ import datetime as dt
 import json
 from datetime import datetime
 import requests
-import logging
+import logging as log
 
 from googleapiclient.errors import HttpError
 
@@ -13,15 +13,15 @@ def add_events(service, calendarID, event, duplicate_check=True):
         if duplicate_check:
             if is_duplicate(service, calendarID, event['start']['dateTime'], event['end']['dateTime']):
                 event = service.events().insert(calendarId=calendarID, body=event).execute()
-                print(f"Event '{event['summary']}' created")
+                log.info(f"Event '{event['summary']}' created")
             else:
-                print(f"Time slot for event '{event['summary']}' is not available. Event not created.")
+                log.info(f"Time slot for event '{event['summary']}' is not available. Event not created.")
         else:
             event = service.events().insert(calendarId=calendarID, body=event).execute()
-            print(f"Event '{event['summary']}' created")
+            log.info(f"Event '{event['summary']}' created")
 
     except HttpError as error: 
-        print("An error has occured", error)
+        log.error("An error has occured", error)
 
 """Function to check if the event already exists in the calendar"""
 def is_duplicate(service, calendar_id, start, end):
@@ -54,7 +54,7 @@ def delete_future_events(service, calendar_id):
     # Get the list of events from the response
     events = events_result.get('items', [])
     if not events:
-        print("No more future events to delete.")
+        log.info("No more future events to delete.")
         return 
     
     for event in events:
@@ -66,10 +66,10 @@ def delete_future_events(service, calendar_id):
             if 'date' in event.get('start'):
                 if event_start >= today:
                     service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
-                    print(f"Deleted all-day event: {event.get('summary', 'No Summary')}")
+                    log.info(f"Deleted all-day event: {event.get('summary', 'No Summary')}")
             else:
                 if event_start >= now:
                     service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
-                    print(f"Deleted time-specific event: {event.get('summary', 'No Summary')}")
+                    log.info(f"Deleted time-specific event: {event.get('summary', 'No Summary')}")
         except Exception as e:
-            print(f"Could not delete event: {e}")
+            log.error(f"Could not delete event: {e}")

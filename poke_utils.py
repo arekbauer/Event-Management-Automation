@@ -11,7 +11,6 @@ OFFSET = "+01:00"
 
 """Grabs extra details for community days"""
 def community_day_bonuses(event):
-    
     bonusTexts = []
     
     # Navigate to the specific structure directly
@@ -88,35 +87,40 @@ def filter_event_types(events, whiteList):
 """Converts the LeekDuck json format to Google Calendar json format"""
 def create_pokemon_go_event(event):
     
-    startTime, endTime, allDay = all_day_event(event)
-    dateStatus = "dateTime"
-    bonusTexts = None
-    
-    # Changes date to "date" if 
-    dateStatus = "date" if allDay else dateStatus
-    
-    # Check if there is extra data for the event
-    if (event['extraData']):
-        event_type = event['eventType']
-        if event_type in event_bonuses_handlers:
-            bonusTexts = event_bonuses_handlers[event_type](event)
-    
-    event = {
-            "summary": f"{event['name']}",
-            "description": f"<b>Extras:</b>\n{bonusTexts} \n\n{event['link']}" if bonusTexts else f"{event['link']}",
-            "colorId": "3",
-            "start": {
-                f"{dateStatus}": startTime,
-                "timeZone": "Europe/London",
-            },
-            "end": {
-                f"{dateStatus}": endTime,
-                "timeZone": "Europe/London",
-            },
-            "reminders": {
-                "useDefault": False
-            }
-    }
+    try: 
+        startTime, endTime, allDay = all_day_event(event)
+        dateStatus = "dateTime"
+        bonusTexts = None
+        
+        # Changes date to "date" if 
+        dateStatus = "date" if allDay else dateStatus
+        
+        # Check if there is extra data for the event
+        if (event['extraData']):
+            event_type = event['eventType']
+            if event_type in event_bonuses_handlers:
+                bonusTexts = event_bonuses_handlers[event_type](event)
+        
+        event = {
+                "summary": f"{event['name']}",
+                "description": f"<b>Extras:</b>\n{bonusTexts} \n\n{event['link']}" if bonusTexts else f"{event['link']}",
+                "colorId": "3",
+                "start": {
+                    f"{dateStatus}": startTime,
+                    "timeZone": "Europe/London",
+                },
+                "end": {
+                    f"{dateStatus}": endTime,
+                    "timeZone": "Europe/London",
+                },
+                "reminders": {
+                    "useDefault": False
+                }
+        }
+        
+    except KeyError as e: 
+        log.error(f"Could not create Pokemon Go event - {event}")
+        
     return event
 
 """Converts events that stretch to multiple days into all-day events"""

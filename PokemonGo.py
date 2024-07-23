@@ -13,7 +13,8 @@ import datetime as dt
 from datetime import datetime
 import utils
 import api_tools as api
-import logging
+import logging as log
+from log_tool import configure_logging
 import poke_utils as poke
 
 from google.auth.transport.requests import Request
@@ -53,6 +54,10 @@ def main():
             
                 
 if __name__ == "__main__":
+    # Call logging to start
+    configure_logging()
+    log.info("Start of VALORANT Script")
+    
     """Handles all of Google OAuth"""
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
