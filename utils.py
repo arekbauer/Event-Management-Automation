@@ -1,11 +1,10 @@
-import os.path
 import datetime as dt 
-import json
 from datetime import datetime
-import requests
-import logging as log
+from log_tool import get_logger
 
 from googleapiclient.errors import HttpError
+
+log = get_logger()
 
 """Function to add events to calendar"""
 def add_events(service, calendarID, event, duplicate_check=True):

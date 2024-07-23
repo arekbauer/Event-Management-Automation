@@ -1,6 +1,8 @@
 import datetime as dt 
 from datetime import datetime
-import logging as log
+from log_tool import get_logger
+
+log = get_logger()
 
 """
 TODO:

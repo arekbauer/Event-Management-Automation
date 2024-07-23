@@ -14,7 +14,7 @@ from datetime import datetime
 import utils
 import api_tools as api
 import logging as log
-from log_tool import configure_logging
+from log_tool import get_logger
 import poke_utils as poke
 
 from google.auth.transport.requests import Request
@@ -51,12 +51,14 @@ def main():
         
         # Adds event to calendar
         utils.add_events(service, calendarID, new_event, duplicate_check=False) 
+        
+    log.info("-----------------END of PokemonGo Script-----------------\n")
             
                 
 if __name__ == "__main__":
     # Call logging to start
-    configure_logging()
-    log.info("Start of VALORANT Script")
+    log = get_logger()
+    log.info("-----------------START of PokemonGo Script-----------------")
     
     """Handles all of Google OAuth"""
     creds = None

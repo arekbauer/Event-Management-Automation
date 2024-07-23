@@ -3,7 +3,9 @@ import os.path
 import json
 import pytz
 import requests
-import logging as log
+from log_tool import get_logger
+
+log = get_logger()
 
 """Fetch data from the given API URL and return the JSON response"""
 def fetch_api_data(api_url):
