@@ -1,21 +1,7 @@
-"""
-By using https://github.com/bigfoott/ScrapedDuck
-
-I want to grab events and only put in the start of it, e.g.
-
-- Start of when a new raid boss comes in 
-- Full events
-- Changing descriptions when event is known
-- Hosting all of this on the raspberry pi
-"""
 import os.path
-import datetime as dt 
-from datetime import datetime
-import utils
-import api_tools as api
+from tools import utils, api_tools as api, poke_utils as poke
+from tools.log_tool import get_logger
 import logging as log
-from log_tool import get_logger
-import poke_utils as poke
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
