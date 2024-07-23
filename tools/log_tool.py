@@ -15,7 +15,7 @@ def configure_logger():
     # Prevent duplicate handlers
     if not logger.hasHandlers():
         # Add the log message handler to the logger
-        handler = RotatingFileHandler(logFilePath, maxBytes=1*1024*1024, backupCount=3)  # 5 MB per file, keep 3 backups
+        handler = RotatingFileHandler(logFilePath, maxBytes=1*1024*1024, backupCount=3)  # 1 MB per file, keep 3 backups
         handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
         logger.addHandler(handler)
     

@@ -4,10 +4,6 @@ from tools.log_tool import get_logger
 
 log = get_logger()
 
-"""
-TODO:
-    Find the best way to correctly log things (logging to file?)
-"""
 OFFSET = "+01:00"
 
 
