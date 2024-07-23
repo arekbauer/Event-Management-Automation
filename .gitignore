@@ -1,6 +1,8 @@
 # Remove my google creds
 json/*
+!json/
 
 logs/*
+!logs/
 
 __pycache__
