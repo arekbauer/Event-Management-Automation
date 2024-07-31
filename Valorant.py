@@ -73,6 +73,6 @@ if __name__ == "__main__":
     # Define some variables
     api_url = "https://vlrggapi.vercel.app/match?q=upcoming"
     cache_file = "json/vlr_matches.json"
-    whiteList = ["Champions Tour 2024"]
+    whiteList = ["Valorant Champions 2024"]
     
     main()
