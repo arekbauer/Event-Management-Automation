@@ -130,7 +130,7 @@ def all_day_event(event):
     
     whiteList = ["event", "live-event", "pokemon-go-fest", 
                  "season", "pokemon-go-tour", "elite-raids", 
-                 "raid-battles", "raid-weekend", "go-battle-league"]
+                 "raid-battles", "raid-weekend", "go-battle-league", "research"]
     
     if any(phrase in event['eventType'] for phrase in whiteList):
         startTime = startTime.split('T')[0]
