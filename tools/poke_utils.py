@@ -4,7 +4,8 @@ from tools.log_tool import get_logger
 
 log = get_logger()
 
-OFFSET = "+01:00"
+# Needed for Daylight Saving 
+OFFSET = "+00:00"
 
 
 """Grabs extra details for community days"""
@@ -130,7 +131,7 @@ def all_day_event(event):
     
     whiteList = ["event", "live-event", "pokemon-go-fest", 
                  "season", "pokemon-go-tour", "elite-raids", 
-                 "raid-battles", "raid-weekend", "go-battle-league", "research"]
+                 "raid-battles", "raid-weekend", "go-battle-league"]
     
     if any(phrase in event['eventType'] for phrase in whiteList):
         startTime = startTime.split('T')[0]
