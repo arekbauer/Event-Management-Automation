@@ -98,7 +98,10 @@ def create_pokemon_go_event(event):
         if (event['extraData']):
             event_type = event['eventType']
             if event_type in event_bonuses_handlers:
-                bonusTexts = event_bonuses_handlers[event_type](event)
+                try:    
+                    bonusTexts = event_bonuses_handlers[event_type](event)
+                except Exception:
+                    bonusTexts = None
         
         event = {
                 "summary": f"{event['name']}",

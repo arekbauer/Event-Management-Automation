@@ -13,7 +13,8 @@ def pokemon_go(creds, delete_future_events:bool):
     whiteList = ["community-day", "event", 
                  "live-event", "pokemon-go-fest", "pokemon-spotlight-hour", 
                  "season", "pokemon-go-tour", "raid-day", "elite-raids", 
-                 "raid-battles", "raid-hour", "raid-weekend", "go-battle-league", "research"] # Make sure to edit whiteList in all_day_event() if have to
+                 "raid-battles", "raid-hour", "raid-weekend", "go-battle-league", 
+                 "research","max-mondays"] # Make sure to edit whiteList in all_day_event() if have to
 
     log = get_logger()
     log.info("--------------START of PokemonGo Script-------------")
