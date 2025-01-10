@@ -78,7 +78,7 @@ def filter_event_types(events, whiteList):
         startDate = datetime.fromisoformat(event.get('start').split('T')[0]).date()
         
         # Check if any whitelist phrase is in 'eventType' AND if the startdate is after today
-        if any(phrase in event_data['eventType'] for phrase in whiteList):
+        if any(phrase in event_data['eventType'] for phrase in whiteList) and startDate >= today:
             filtered_events.append(event_data)
             
     return filtered_events
