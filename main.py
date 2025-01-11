@@ -14,7 +14,7 @@ def main():
             scopes=SCOPES)
     
     # Run Pokemon Go Script
-    #PokemonGo.pokemon_go(creds=creds, delete_future_events=True)
+    PokemonGo.pokemon_go(creds=creds, delete_future_events=True)
     
     # Run Valorant Script
     Valorant.valorant(creds=creds, delete_future_events=True)
