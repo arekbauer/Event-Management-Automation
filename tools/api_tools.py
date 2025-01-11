@@ -23,19 +23,17 @@ def extract_vlr_matches(matches, whiteList=None):
     extracted_data = []
     for match in matches:
         match_data = {
-            "team1": match.get('team1'),
-            "team2": match.get('team2'),
-            "time_until_match": match.get('time_until_match'),
-            "match_series": match.get('match_series'),
-            "match_event": match.get('match_event'),
-            "unix_timestamp": match.get('unix_timestamp'),
-            "match_page": match.get('match_page')
+            "team1": match.get('teams')[0].get('name'),
+            "team2": match.get('teams')[1].get('name'),
+            "event": match.get('event'),
+            "tournament": match.get('tournament'),
+            "timestamp": match.get('timestamp'),
         }
         
-        # Check if any whitelist phrase is in match_event or match_series
-        if any(phrase in match_data['match_event'] or phrase in match_data['match_series'] for phrase in whiteList):
+        # Check if any whitelist phrase is in tournament or event
+        if any(phrase in match_data['tournament'] or phrase in match_data['event'] for phrase in whiteList):
             extracted_data.append(match_data)
-            
+
     return extracted_data
 
 """Converts the VLR json format to Google Calendar json format"""
@@ -63,14 +61,14 @@ def create_vlr_event(match):
             "useDefault": False
         }
     }
-    return event
-    
+    return tournament
+
 """Convert Unix timestamp (string) to ISO 8601 format with timezone offset"""
 def convert_time_iso(timestamp, duration):
     # Parse the Unix timestamp into a datetime object
-    dt_object = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+    dt_object = datetime.fromtimestamp(int(timestamp))
 
-    # Assume the timestamp is UTC and convert to your desired timezone
+    # Timestamp is UTC and convert London timezone
     utc_timezone = pytz.timezone('UTC')
     bst_timezone = pytz.timezone('Europe/London')  
 

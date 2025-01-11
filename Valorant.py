@@ -8,7 +8,7 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
 def valorant(creds, delete_future_events:bool): 
     """Script for VLR Matches"""
     # Define some variables
-    api_url = "https://vlrggapi.vercel.app/match?q=upcoming"
+    api_url = "https://vlr.orlandomm.net/api/v1/matches"
     cache_file = "json/vlr_matches.json"
     whiteList = ["Champions Tour 2025"]
     
@@ -17,11 +17,11 @@ def valorant(creds, delete_future_events:bool):
     
     # Fetch the data from the API
     events = api.fetch_api_data(api_url)
-    matches = events.get('data',{}).get('segments',[])
+    matches = events.get('data',[])
     
     # Check if matches are present
     if matches: 
-        match_list = api.extract_vlr_matches(matches,whiteList) # Extract the details we need from API call
+        match_list = api.extract_vlr_matches(matches, whiteList) # Extract the details we need from API call
         
         # Save the matches to an external json file
         api.save_data_to_file(match_list, cache_file)
@@ -41,7 +41,7 @@ def valorant(creds, delete_future_events:bool):
             event = api.create_vlr_event(match)
             
             # Adds event to calendar
-            utils.add_events(service, calendarID, event)     
+            utils.add_events(service, calendarID, event, duplicate_check=False)
     else:
         log.warning("No matches found in the API response.")
     
