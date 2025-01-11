@@ -40,11 +40,14 @@ def extract_vlr_matches(matches, whiteList=None):
 
 """Converts the VLR json format to Google Calendar json format"""
 def create_vlr_event(match):
-    # TODO: If the "match_event" contains "Lower" or "Ground" and "Final" then it's a Bo5 - so 
-    #   convert_time_iso(duration = 4) not duration = 2
-      
+    # Check if it's a Bo5 match
+    if "Lower Final" in match['match_series'] or "Grand Final" in match['match_series']:
+        duration = 4
+    else:
+        duration = 2
+
     # Convert time to valid format 
-    start_time, end_time = convert_time_iso(match['unix_timestamp'])
+    start_time, end_time = convert_time_iso(match['unix_timestamp'], duration) 
     event = {
         #"summary": f"{match['team1']} vs {match['team2']} | {match['match_event']} - {match['match_series']}",
         "summary": f"{match['team1']} vs {match['team2']} | {match['match_series']}",
@@ -63,7 +66,7 @@ def create_vlr_event(match):
     return event
     
 """Convert Unix timestamp (string) to ISO 8601 format with timezone offset"""
-def convert_time_iso(timestamp, duration=2):
+def convert_time_iso(timestamp, duration):
     # Parse the Unix timestamp into a datetime object
     dt_object = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
 

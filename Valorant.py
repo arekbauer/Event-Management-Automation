@@ -10,7 +10,7 @@ def valorant(creds, delete_future_events:bool):
     # Define some variables
     api_url = "https://vlrggapi.vercel.app/match?q=upcoming"
     cache_file = "json/vlr_matches.json"
-    whiteList = ["Valorant Champions 2024"]
+    whiteList = ["Champions Tour 2025"]
     
     log = get_logger()
     log.info("-------------START of VALORANT Script-------------\n")
