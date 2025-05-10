@@ -65,22 +65,32 @@ def filter_event_types(events, whiteList):
     today = datetime.today().date()
     
     for event in events:
-        event_data = {
-            "name": event.get('name'),
-            "eventType": event.get('eventType'),
-            "link": event.get('link'),
-            "start": event.get('start'),
-            "end": event.get('end'),
-            "extraData": event.get('extraData')
-        }
+        # Skip events with null or missing start dates
+        if not event.get('start'):
+            print(f"Skipping event with null start: {event.get('name')}")
+            continue
         
-        # Grab the start date and convert to comparable format
-        startDate = datetime.fromisoformat(event.get('start').split('T')[0]).date()
-        
-        # Check if any whitelist phrase is in 'eventType' AND if the startdate is after today
-        if any(phrase in event_data['eventType'] for phrase in whiteList) and startDate > today:
-            filtered_events.append(event_data)
+        try: 
+            event_data = {
+                "name": event.get('name'),
+                "eventType": event.get('eventType'),
+                "link": event.get('link'),
+                "start": event.get('start'),
+                "end": event.get('end'),
+                "extraData": event.get('extraData')
+            }
             
+            # Grab the start date and convert to comparable format
+            startDate = datetime.fromisoformat(event.get('start').split('T')[0]).date()
+            
+            # Check if any whitelist phrase is in 'eventType' AND if the startDate is after today
+            if any(phrase in event_data['eventType'] for phrase in whiteList) and startDate > today:
+                filtered_events.append(event_data)
+            
+        except Exception as e:
+            print(f"Error processing event {event.get('name')}: {e}")
+            continue
+        
     return filtered_events
 
 """Converts the LeekDuck json format to Google Calendar json format"""
