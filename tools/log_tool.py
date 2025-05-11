@@ -8,7 +8,7 @@ def configure_logger():
     """Initalises up all of the logging features, ready for use"""
     # Initialise variables
     currentTime = datetime.now().strftime('%m-%d_%I%p')
-    logFilePath = f"logs/{currentTime}.log"
+    logFilePath = f"Event-Management-Automation/logs/{currentTime}.log"
     
     # Configure the Logging
     logger = logging.getLogger("Calendar-Script")
