@@ -1,5 +1,5 @@
 from tools import utils, api_tools as api
-from tools.log_tool import get_logger
+from tools.log_tool import get_logger, send_discord_notification
 
 from googleapiclient.discovery import build
 
@@ -34,15 +34,23 @@ def valorant(creds, delete_future_events:bool):
         if delete_future_events:
             utils.delete_future_events(service, calendarID)
         
+        matches_from_file = api.load_data_from_file(cache_file)
+    
+        # Check if the loaded data is empty
+        if not matches_from_file:  
+            send_discord_notification("No matches found in the VALORANT API response. (change the whitelist!)")
+            log.warning("The JSON file contains no matches (empty list).")
+            return
+        
         # Go through each match from json file
-        for match in api.load_data_from_file(cache_file):
-            
+        for match in matches_from_file:
             # Converts a VLR format to Google Calendar format
             event = api.create_vlr_event(match)
             
             # Adds event to calendar
             utils.add_events(service, calendarID, event)     
     else:
+        send_discord_notification("Nothing found in the VALORANT API response. (check the API call!)")
         log.warning("No matches found in the API response.")
     
     log.info("-------------END of VALORANT Script-------------\n")

@@ -1,9 +1,11 @@
-import logging 
+import logging, requests
 from logging.handlers import RotatingFileHandler
+from tools.config import DISCORD_WEBHOOK_URL
 from datetime import datetime
 
-"""Initalises up all of the logging features, ready for use"""
+
 def configure_logger():
+    """Initalises up all of the logging features, ready for use"""
     # Initialise variables
     currentTime = datetime.now().strftime('%m-%d_%I%p')
     logFilePath = f"logs/{currentTime}.log"
@@ -21,9 +23,19 @@ def configure_logger():
     
     return logger
 
+def send_discord_notification(message):
+    """Sends a message to the Discord webhook"""
+    webhook_url = DISCORD_WEBHOOK_URL
+    data = {
+        "content": message,
+        "embeds": [{
+            "title": "Script Issue",
+            "description": message,
+            "color": 16711680 # red
+        }]
+    }
+    requests.post(webhook_url, json=data, headers={'Content-Type': 'application/json'})
 
 def get_logger():
-    """
-    Returns the configured logger.
-    """
+    """Returns the configured logger"""
     return configure_logger()
