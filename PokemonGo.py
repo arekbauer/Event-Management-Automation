@@ -9,7 +9,7 @@ def pokemon_go(creds, delete_future_events:bool):
     """Script for Pokemon Go Events"""
     # Define some variables
     api_url = "https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.json"
-    cache_file = "json/pokemonGo_events.json"
+    cache_file = "Event-Management-Automation/json/pokemonGo_events.json"
     whiteList = ["community-day", "event", 
                  "live-event", "pokemon-go-fest", "pokemon-spotlight-hour", 
                  "season", "pokemon-go-tour", "raid-day", "elite-raids", 

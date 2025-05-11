@@ -4,7 +4,7 @@ import PokemonGo, Valorant, requests, traceback
 from google.oauth2 import service_account
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
-CREDENTIALS_PATH = "json/credentials.json"
+CREDENTIALS_PATH = "Event-Management-Automation/json/credentials.json"
 
 def main():
     log = get_logger()
