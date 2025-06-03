@@ -39,13 +39,15 @@ def is_duplicate(service, calendar_id, start, end):
 """Function to delete all the events in given calendar ID"""
 def delete_future_events(service, calendar_id):
     # Grab the current date and time
-    now = datetime.now(dt.timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0).isoformat()
-    today = datetime.now(dt.timezone.utc).date().isoformat()
+    now = datetime.now(dt.timezone.utc)
+    tomorrow = (now + dt.timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+    tomorrow_iso = tomorrow.isoformat()
+    tomorrow_date = tomorrow.date().isoformat()
     
     # Fetch events starting from the current time (now)
     events_result = service.events().list(
             calendarId=calendar_id,
-            timeMin=now,
+            timeMin=now.isoformat(),
             singleEvents=True,
             orderBy='startTime'
         ).execute()
@@ -63,11 +65,13 @@ def delete_future_events(service, calendar_id):
             
             # Check if the event is an all-day event (has date but no time)
             if 'date' in event.get('start'):
-                if event_start >= today:
+                # Only delete all-day events starting after today (i.e., tomorrow and beyond)
+                if event_start >= tomorrow_date:
                     service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
                     log.info(f"Deleted all-day event: {event.get('summary', 'No Summary')}")
             else:
-                if event_start >= now:
+                # Only delete time-specific events starting after today (i.e., tomorrow and beyond)
+                if event_start >= tomorrow_iso:
                     service.events().delete(calendarId=calendar_id, eventId=event['id']).execute()
                     log.info(f"Deleted time-specific event: {event.get('summary', 'No Summary')}")
         except Exception as e:
