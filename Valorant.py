@@ -1,6 +1,7 @@
 from tools import utils, api_tools as api
 from tools.log_tool import get_logger, send_discord_notification
-
+import os
+from tools.config import ROOT_FILE_PATH
 from googleapiclient.discovery import build
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
@@ -9,9 +10,9 @@ def valorant(creds, delete_future_events:bool):
     """Script for VLR Matches"""
     # Define some variables
     api_url = "https://vlrggapi.vercel.app/match?q=upcoming"
-    cache_file = "json/vlr_matches.json"
+    cache_file = os.path.join(ROOT_FILE_PATH, "json/vlr_matches.json")
     whiteList = ["Valorant Masters Toronto 2025","Champions Tour 2025", "Esports World Cup 2025 "]
-    
+
     log = get_logger()
     log.info("-------------START of VALORANT Script-------------\n")
     

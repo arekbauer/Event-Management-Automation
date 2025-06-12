@@ -1,11 +1,12 @@
 import datetime as dt 
 from datetime import datetime
 from tools.log_tool import get_logger
+from zoneinfo import ZoneInfo
 
 log = get_logger()
 
 # Needed for Daylight Saving 
-OFFSET = "+00:00"
+OFFSET = "+01:00"
 
 
 """Grabs extra details for community days"""
@@ -95,7 +96,6 @@ def filter_event_types(events, whiteList):
 
 """Converts the LeekDuck json format to Google Calendar json format"""
 def create_pokemon_go_event(event):
-    
     try: 
         startTime, endTime, allDay = all_day_event(event)
         dateStatus = "dateTime"
@@ -137,7 +137,6 @@ def create_pokemon_go_event(event):
 
 """Converts events that stretch to multiple days into all-day events"""
 def all_day_event(event):
-    
     startTime = event['start'] + OFFSET 
     endTime = event['end'] + OFFSET 
     allDayEvent = False

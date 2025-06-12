@@ -1,10 +1,10 @@
 from tools.log_tool import get_logger, send_discord_notification
-import PokemonGo, Valorant, requests, traceback
-
+import PokemonGo, Valorant, requests, traceback, os
+from tools.config import ROOT_FILE_PATH
 from google.oauth2 import service_account
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
-CREDENTIALS_PATH = "json/credentials.json"
+CREDENTIALS_PATH = os.path.join(ROOT_FILE_PATH, "json/credentials.json")
 
 def main():
     log = get_logger()
