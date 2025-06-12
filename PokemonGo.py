@@ -6,7 +6,7 @@ from tools.config import ROOT_FILE_PATH
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
-def pokemon_go(creds, delete_future_events:bool): 
+def pokemon_go(creds, delete_future_events: bool) -> None: 
     """Script for Pokemon Go Events"""
     # Define some variables
     api_url = "https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.json"

@@ -28,7 +28,7 @@ def configure_logger():
     
     return logger
 
-def send_discord_notification(message):
+def send_discord_notification(message: str) -> None:
     """Sends a message to the Discord webhook"""
     webhook_url = DISCORD_WEBHOOK_URL
     data = {
@@ -41,6 +41,6 @@ def send_discord_notification(message):
     }
     requests.post(webhook_url, json=data, headers={'Content-Type': 'application/json'})
 
-def get_logger():
+def get_logger() -> logging.Logger:
     """Returns the configured logger"""
     return configure_logger()

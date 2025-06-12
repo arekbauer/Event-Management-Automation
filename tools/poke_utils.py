@@ -9,8 +9,8 @@ log = get_logger()
 OFFSET = "+01:00"
 
 
-"""Grabs extra details for community days"""
-def community_day_bonuses(event):
+def community_day_bonuses(event: dict) -> str:
+    """Grabs extra details for community days"""
     bonusTexts = []
     
     # Navigate to the specific structure directly
@@ -21,8 +21,8 @@ def community_day_bonuses(event):
     
     return bonusTexts
 
-"""Grabs extra details for spotlight hours"""
-def spotlight_hour_bonuses(event):
+def spotlight_hour_bonuses(event: dict) -> str:
+    """Grabs extra details for spotlight hours"""
     bonusTexts = None
     
     # Navigate to the specific structure directly
@@ -37,8 +37,8 @@ def spotlight_hour_bonuses(event):
     
     return bonusTexts
 
-"""Grabs extra details for raids"""
-def raid_bonuses(event):
+def raid_bonuses(event: dict) -> str:
+    """Grabs extra details for raids"""
     bonusTexts = None
     
     # Navigate to the specific structure directly
@@ -60,8 +60,8 @@ event_bonuses_handlers = {
     "raid-battles": raid_bonuses
 }
 
-"""Function to filter out and store only wanted events"""
-def filter_event_types(events, whiteList):
+def filter_event_types(events: dict, whiteList: list) -> list:
+    """Function to filter out and store only wanted events"""
     filtered_events = []
     today = datetime.today().date()
     
@@ -94,8 +94,8 @@ def filter_event_types(events, whiteList):
         
     return filtered_events
 
-"""Converts the LeekDuck json format to Google Calendar json format"""
-def create_pokemon_go_event(event):
+def create_pokemon_go_event(event: dict) -> dict:
+    """Converts the LeekDuck json format to Google Calendar json format"""
     try: 
         startTime, endTime, allDay = all_day_event(event)
         dateStatus = "dateTime"
@@ -135,8 +135,8 @@ def create_pokemon_go_event(event):
         
     return event
 
-"""Converts events that stretch to multiple days into all-day events"""
-def all_day_event(event):
+def all_day_event(event: dict) -> tuple[str, str, bool]:
+    """Converts events that stretch to multiple days into all-day events"""
     startTime = event['start'] + OFFSET 
     endTime = event['end'] + OFFSET 
     allDayEvent = False

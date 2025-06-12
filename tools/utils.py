@@ -6,8 +6,13 @@ from googleapiclient.errors import HttpError
 
 log = get_logger()
 
-"""Function to add events to calendar"""
-def add_events(service, calendarID, event, duplicate_check=True):
+def add_events(
+    service, 
+    calendarID: str,
+    event: dict, 
+    duplicate_check: bool = True
+    ) -> None:
+    """Function to add events to calendar"""
     try: 
         if duplicate_check:
             if is_duplicate(service, calendarID, event['start']['dateTime'], event['end']['dateTime']):
@@ -22,8 +27,8 @@ def add_events(service, calendarID, event, duplicate_check=True):
     except HttpError as error: 
         log.error("An error has occured", error)
 
-"""Function to check if the event already exists in the calendar"""
-def is_duplicate(service, calendar_id, start, end):
+def is_duplicate(service, calendar_id: str, start: str, end: str) -> bool:
+    """Function to check if the event already exists in the calendar"""
     # Grabs any events between the start and end time
     events_result = service.events().list(
         calendarId=calendar_id,
@@ -36,8 +41,8 @@ def is_duplicate(service, calendar_id, start, end):
     return len(events) == 0
 
 
-"""Function to delete all the events in given calendar ID"""
-def delete_future_events(service, calendar_id):
+def delete_future_events(service, calendar_id: str) -> None:
+    """Function to delete all the events in given calendar ID"""
     # Grab the current date and time
     now = datetime.now(dt.timezone.utc)
     tomorrow = (now + dt.timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)

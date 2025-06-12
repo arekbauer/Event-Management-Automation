@@ -7,6 +7,7 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
 CREDENTIALS_PATH = os.path.join(ROOT_FILE_PATH, "json/credentials.json")
 
 def main():
+    """Main function to run the calendar scripts for Pokemon Go and Valorant."""
     log = get_logger()
     log.info("-----------------START of Calendar Script-----------------\n")
     

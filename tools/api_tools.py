@@ -7,8 +7,8 @@ from tools.log_tool import get_logger
 
 log = get_logger()
 
-"""Fetch data from the given API URL and return the JSON response"""
-def fetch_api_data(api_url):
+def fetch_api_data(api_url: str) -> dict | None:
+    """Fetches data from the given API URL and return the JSON response"""
     try:
         response = requests.get(api_url)
         response.raise_for_status()  # Raise HTTPError for bad responses
@@ -18,8 +18,8 @@ def fetch_api_data(api_url):
         log.error(f"Request failed: {e}") 
         return 
 
-"""Extract relevant information from each match and return a list of dictionaries"""
-def extract_vlr_matches(matches, whiteList=None):
+def extract_vlr_matches(matches: dict, whiteList: list = None) -> list:
+    """Extract relevant information from each match and return a list of dictionaries"""
     extracted_data = []
     for match in matches:
         match_data = {
@@ -38,8 +38,8 @@ def extract_vlr_matches(matches, whiteList=None):
             
     return extracted_data
 
-"""Converts the VLR json format to Google Calendar json format"""
-def create_vlr_event(match):
+def create_vlr_event(match: dict) -> dict:
+    """Converts the VLR json format to Google Calendar json format"""
     # Check if it's a Bo5 match
     if "Lower Final" in match['match_series'] or "Grand Final" in match['match_series']:
         duration = 4
@@ -65,8 +65,8 @@ def create_vlr_event(match):
     }
     return event
     
-"""Convert Unix timestamp (string) to ISO 8601 format with timezone offset"""
-def convert_time_iso(timestamp, duration):
+def convert_time_iso(timestamp: str, duration: int) -> tuple[str, str]:
+    """Convert Unix timestamp (string) to ISO 8601 format with timezone offset"""
     # Parse the Unix timestamp into a datetime object
     dt_object = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
 
@@ -87,8 +87,8 @@ def convert_time_iso(timestamp, duration):
     return start_time, end_time
     
 
-"""Save data to a JSON file"""
-def save_data_to_file(data, filename):
+def save_data_to_file(data: list, filename: str) -> None:
+    """Save data to a JSON file"""
     try:
         with open(filename, 'w') as file:
             json.dump(data, file, indent=4)
@@ -97,8 +97,8 @@ def save_data_to_file(data, filename):
     except IOError as e:
         log.error(f"Failed to save data to {filename}: {e}")
 
-"""Load data from a JSON file"""
-def load_data_from_file(filename):
+def load_data_from_file(filename: str) -> list | None:
+    """Load data from a JSON file"""
     if not os.path.exists(filename):
         log.warning(f"{filename} does not exist.")
         return None

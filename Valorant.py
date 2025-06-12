@@ -6,7 +6,7 @@ from googleapiclient.discovery import build
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
-def valorant(creds, delete_future_events:bool): 
+def valorant(creds, delete_future_events:bool) -> None: 
     """Script for VLR Matches"""
     # Define some variables
     api_url = "https://vlrggapi.vercel.app/match?q=upcoming"
