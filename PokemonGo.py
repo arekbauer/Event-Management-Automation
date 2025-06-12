@@ -1,7 +1,8 @@
 from tools import utils, api_tools as api, poke_utils as poke
 from tools.log_tool import get_logger
-
 from googleapiclient.discovery import build
+import os
+from tools.config import ROOT_FILE_PATH
 
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
@@ -9,7 +10,7 @@ def pokemon_go(creds, delete_future_events:bool):
     """Script for Pokemon Go Events"""
     # Define some variables
     api_url = "https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.json"
-    cache_file = "Event-Management-Automation/json/pokemonGo_events.json"
+    cache_file = os.path.join(ROOT_FILE_PATH, "json/pokemonGo_events.json")
     whiteList = ["community-day", "event", 
                  "live-event", "pokemon-go-fest", "pokemon-spotlight-hour", 
                  "season", "pokemon-go-tour", "raid-day", "elite-raids", 

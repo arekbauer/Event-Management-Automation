@@ -1,14 +1,19 @@
-import logging, requests
+import logging, requests, os
 from logging.handlers import RotatingFileHandler
-from tools.config import DISCORD_WEBHOOK_URL
+from tools.config import DISCORD_WEBHOOK_URL, ROOT_FILE_PATH
 from datetime import datetime
-
 
 def configure_logger():
     """Initalises up all of the logging features, ready for use"""
     # Initialise variables
     currentTime = datetime.now().strftime('%m-%d_%I%p')
-    logFilePath = f"Event-Management-Automation/logs/{currentTime}.log"
+    
+    # Grab the root directory of project
+    logDirectory = os.path.join(ROOT_FILE_PATH, "logs")
+    
+    # Construct the full log file path
+    logFileName = f"{currentTime}.log"
+    logFilePath = os.path.join(logDirectory, logFileName)
     
     # Configure the Logging
     logger = logging.getLogger("Calendar-Script")
