@@ -11,7 +11,7 @@ def valorant(creds, delete_future_events:bool) -> None:
     # Define some variables
     api_url = "https://vlrggapi.vercel.app/match?q=upcoming"
     cache_file = os.path.join(ROOT_FILE_PATH, "json/vlr_matches.json")
-    whiteList = ["Valorant Masters Toronto 2025","Champions Tour 2025", "Esports World Cup 2025 "]
+    whiteList = ["VCT 2025: Pacific Stage 2","Valorant Champions Tour 2025", "VCT 2025: EMEA Stage 2"]
 
     log = get_logger()
     log.info("-------------START of VALORANT Script-------------\n")
