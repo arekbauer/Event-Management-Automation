@@ -30,20 +30,24 @@ def fetch_valorant_matches(log):
     # --- Try Primary API ---
     log.info("Attempting to fetch data from Primary API...")
     primary_response = fetch_api_data(primary_api_url)
-    primary_matches = primary_response.get('data', [])
     
-    if primary_matches:
-        log.info("Successfully fetched data from Primary API.")
-        return primary_matches, 'primary'
+    if primary_response:
+        primary_matches = primary_response.get('data', [])
+    
+        if primary_matches:
+            log.info("Successfully fetched data from Primary API.")
+            return primary_matches, 'primary'
 
     # --- Try Secondary API ---
     log.warning("Primary API failed. Falling back to Secondary API...")
     secondary_response = fetch_api_data(secondary_api_url)
-    secondary_matches = secondary_response.get('data', {}).get('segments', [])
+    
+    if secondary_response:
+        secondary_matches = secondary_response.get('data', {}).get('segments', [])
 
-    if secondary_matches:
-        log.info("Successfully fetched data from Secondary API.")
-        return secondary_matches, 'secondary'
+        if secondary_matches:
+            log.info("Successfully fetched data from Secondary API.")
+            return secondary_matches, 'secondary'
 
     log.error("Both APIs failed to return data.")
     return None, None
