@@ -9,8 +9,7 @@ SCOPES = ["https://www.googleapis.com/auth/calendar"]
 def valorant(creds, delete_future_events: bool) -> None:
     """Script for VLR Matches with API Fallback and full workflow."""
     cache_file = os.path.join(ROOT_FILE_PATH, "json/vlr_matches.json")
-    whiteList = ["VCT 2025: Pacific Stage 2", "Valorant Champions Tour 2025", "VCT 2025: EMEA Stage 2",
-                 "VCT 2025: Americas Stage 2"]
+    whiteList = ["VCT 2026"]
     log = get_logger()
     
     log.info("-------------START of VALORANT Script-------------\n")

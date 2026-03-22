@@ -7,16 +7,20 @@ from tools.log_tool import get_logger
 
 log = get_logger()
 
-def fetch_api_data(api_url: str) -> dict | None:
+def fetch_api_data(api_url: str, timeout: int = 10) -> dict | None:
     """Fetches data from the given API URL and return the JSON response"""
     try:
-        response = requests.get(api_url)
+        response = requests.get(api_url, timeout=timeout)
         response.raise_for_status()  # Raise HTTPError for bad responses
         return response.json()
-    
+
+    except requests.exceptions.Timeout:
+        log.error(f"Request timed out after {timeout}s: {api_url}")
+        return None
+
     except requests.exceptions.RequestException as e:
-        log.error(f"Request failed: {e}") 
-        return
+        log.error(f"Request failed: {e}")
+        return None
     
 def fetch_valorant_matches(log):
     """
@@ -29,7 +33,7 @@ def fetch_valorant_matches(log):
 
     # --- Try Primary API ---
     log.info("Attempting to fetch data from Primary API...")
-    primary_response = fetch_api_data(primary_api_url)
+    primary_response = fetch_api_data(primary_api_url, timeout=8)
     
     if primary_response:
         primary_matches = primary_response.get('data', [])
@@ -40,7 +44,7 @@ def fetch_valorant_matches(log):
 
     # --- Try Secondary API ---
     log.warning("Primary API failed. Falling back to Secondary API...")
-    secondary_response = fetch_api_data(secondary_api_url)
+    secondary_response = fetch_api_data(secondary_api_url, timeout=15)
     
     if secondary_response:
         secondary_matches = secondary_response.get('data', {}).get('segments', [])
@@ -57,7 +61,7 @@ def normalise_and_filter_matches(matches: list, source: str, whiteList: list) ->
     Normalises raw API data into a standard format, creating a timezone-aware
     datetime object for the start time, and then filters the results.
     """
-    NEW_API_TIME_OFFSET_HOURS = 5  # Adjust this if the API changes its time offset
+    NEW_API_TIME_OFFSET_HOURS = 6  # Adjust this if the API changes its time offset
     standardised_list = []
     
     for match in matches:
