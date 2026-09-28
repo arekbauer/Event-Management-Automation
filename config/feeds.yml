@@ -25,7 +25,6 @@ feeds:
       - raid-battles
       - raid-hour
       - raid-weekend
-      - go-battle-league
       - research
       - max-mondays
       - max-battles
@@ -39,7 +38,6 @@ feeds:
       - raid-battles
       - raid-hour
       - raid-weekend
-      - go-battle-league
 
   valorant:
     enabled: true
