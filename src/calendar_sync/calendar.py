@@ -89,7 +89,7 @@ class GoogleCalendarGateway:
                     body=desired_event.to_google_body(self.timezone_name),
                 ).execute()
             for old, desired_event in to_update:
-                self.service.events().patch(
+                self.service.events().update(
                     calendarId=calendar_id,
                     eventId=old["id"],
                     body=desired_event.to_google_body(self.timezone_name),
