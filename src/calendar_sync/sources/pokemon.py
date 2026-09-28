@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime, time, timedelta
+from datetime import UTC, datetime, timedelta
 from typing import Any
 from zoneinfo import ZoneInfo
 
@@ -72,12 +72,6 @@ class PokemonSource:
 
         if event_type in self.config.all_day_event_types:
             start_date = start.astimezone(self.timezone).date()
-            local_end = end.astimezone(self.timezone)
-            end_date = local_end.date()
-            if local_end.timetz().replace(tzinfo=None) != time.min:
-                end_date += timedelta(days=1)
-            if end_date <= start_date:
-                end_date = start_date + timedelta(days=1)
             return CanonicalEvent(
                 feed=self.feed,
                 external_id=external_id,
@@ -86,7 +80,7 @@ class PokemonSource:
                 source_url=link,
                 color_id=self.config.color_id,
                 start_date=start_date,
-                end_date=end_date,
+                end_date=start_date + timedelta(days=1),
             )
         return CanonicalEvent(
             feed=self.feed,

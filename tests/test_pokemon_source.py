@@ -15,8 +15,8 @@ def source_for(payload: object) -> PokemonSource:
         calendar_id_env="POKEMON_CALENDAR",
         source_url="https://example.test/events.json",
         color_id="3",
-        include_event_types=["event", "pokemon-spotlight-hour"],
-        all_day_event_types=["event"],
+        include_event_types=["community-day", "event", "pokemon-spotlight-hour", "raid-hour"],
+        all_day_event_types=["event", "raid-hour"],
     )
     return PokemonSource(
         config,
@@ -46,7 +46,7 @@ def test_naive_london_time_observes_dst() -> None:
     assert result.events[0].end_at == datetime(2026, 7, 14, 18, tzinfo=UTC)
 
 
-def test_all_day_event_uses_exclusive_end_date() -> None:
+def test_configured_all_day_event_is_limited_to_its_start_date() -> None:
     source = source_for(
         [
             {
@@ -64,7 +64,53 @@ def test_all_day_event_uses_exclusive_end_date() -> None:
     event = source.fetch(now=datetime(2026, 9, 1, tzinfo=UTC)).events[0]
 
     assert event.start_date.isoformat() == "2026-10-02"
-    assert event.end_date.isoformat() == "2026-10-06"
+    assert event.end_date.isoformat() == "2026-10-03"
+
+
+def test_raid_hour_is_all_day_on_its_start_date() -> None:
+    source = source_for(
+        [
+            {
+                "eventID": "raid-hour-1",
+                "name": "Tornadus Raid Hour",
+                "eventType": "raid-hour",
+                "link": "https://example.test/raid-hour",
+                "start": "2026-10-07T18:00:00.000",
+                "end": "2026-10-07T19:00:00.000",
+                "extraData": {},
+            }
+        ]
+    )
+
+    event = source.fetch(now=datetime(2026, 10, 1, tzinfo=UTC)).events[0]
+
+    assert event.start_date.isoformat() == "2026-10-07"
+    assert event.end_date.isoformat() == "2026-10-08"
+    assert event.start_at is None
+    assert event.end_at is None
+
+
+def test_community_day_keeps_source_start_and_end_times() -> None:
+    source = source_for(
+        [
+            {
+                "eventID": "community-day-1",
+                "name": "February Community Day",
+                "eventType": "community-day",
+                "link": "https://example.test/community-day",
+                "start": "2026-10-11T14:00:00.000",
+                "end": "2026-10-11T17:00:00.000",
+                "extraData": {},
+            }
+        ]
+    )
+
+    event = source.fetch(now=datetime(2026, 10, 1, tzinfo=UTC)).events[0]
+
+    assert event.start_at == datetime(2026, 10, 11, 13, tzinfo=UTC)
+    assert event.end_at == datetime(2026, 10, 11, 16, tzinfo=UTC)
+    assert event.start_date is None
+    assert event.end_date is None
 
 
 def test_ambiguous_autumn_time_uses_later_instant() -> None:

@@ -49,7 +49,7 @@ class FeedsConfig(StrictModel):
 
 
 class AppConfig(StrictModel):
-    version: int = Field(ge=2, le=2)
+    version: int = Field(ge=3, le=3)
     timezone: str = "Europe/London"
     safety: SafetyConfig = Field(default_factory=SafetyConfig)
     feeds: FeedsConfig

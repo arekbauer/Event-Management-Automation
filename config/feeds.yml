@@ -1,4 +1,4 @@
-version: 2
+version: 3
 timezone: Europe/London
 
 safety:
@@ -11,7 +11,6 @@ feeds:
     calendar_id_env: POKEMON_GO_CALENDAR_ID
     source_url: https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.json
     color_id: "3"
-    # Preserve v1 behaviour: omit events that started today or earlier, even if still running.
     future_start_only: true
     include_event_types:
       - community-day
@@ -38,6 +37,7 @@ feeds:
       - pokemon-go-tour
       - elite-raids
       - raid-battles
+      - raid-hour
       - raid-weekend
       - go-battle-league
 

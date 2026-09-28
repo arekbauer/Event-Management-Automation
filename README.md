@@ -75,6 +75,8 @@ Configuration is validated before any source or calendar access.
 
 - Pokémon `include_event_types` and `all_day_event_types` are exact event-type slugs.
 - Pokémon `future_start_only` preserves v1 filtering by excluding events starting today or earlier.
+- Each Pokémon type in `all_day_event_types` becomes one all-day event on its local start date;
+  its source end date is intentionally ignored. Other types retain their source start and end times.
 - Valorant include and exclude rules are case-insensitive shell-style glob patterns over the
   tournament, series, title, and description. Exclusions win.
 - A timestamp with `Z` or an offset is an absolute instant. A timezone-less Pokémon timestamp
