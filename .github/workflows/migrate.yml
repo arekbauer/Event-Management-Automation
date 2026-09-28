@@ -1,0 +1,66 @@
+name: One-time v1 migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Type DELETE_FUTURE_EVENTS exactly
+        required: true
+        type: string
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: production-calendar-sync
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production-migration
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      GCP_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+      GCP_SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      POKEMON_GO_CALENDAR_ID: ${{ vars.POKEMON_GO_CALENDAR_ID }}
+      VALORANT_CALENDAR_ID: ${{ vars.VALORANT_CALENDAR_ID }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --locked
+      - name: Validate deployment configuration
+        shell: bash
+        run: |
+          missing=()
+          for name in GCP_PROJECT_ID GCP_WORKLOAD_IDENTITY_PROVIDER GCP_SERVICE_ACCOUNT POKEMON_GO_CALENDAR_ID VALORANT_CALENDAR_ID; do
+            [[ -n "${!name}" ]] || missing+=("$name")
+          done
+          if (( ${#missing[@]} )); then
+            printf 'Missing GitHub environment variables: %s\n' "${missing[*]}" >&2
+            exit 1
+          fi
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.GCP_SERVICE_ACCOUNT }}
+      - name: Back up, clear, and rebuild future events
+        run: >-
+          uv run calendar-sync migrate-v1
+          --backup backups/pre-v2.json
+          --confirm-rebuild "${{ inputs.confirmation }}"
+      - name: Preserve private rollback backup
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: pre-v2-calendar-backup
+          path: backups/pre-v2.json
+          retention-days: 14
+          if-no-files-found: warn
