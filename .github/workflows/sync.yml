@@ -1,0 +1,95 @@
+name: Calendar sync
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+  schedule:
+    - cron: "17 3,15 * * *"
+      timezone: Europe/London
+  workflow_dispatch:
+    inputs:
+      feed:
+        description: Feed to sync
+        type: choice
+        options: [all, pokemon_go, valorant]
+        default: all
+      dry_run:
+        description: Calculate changes without writing them
+        type: boolean
+        default: true
+      allow_unsafe_deletes:
+        description: Override deletion safety limits
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: production-calendar-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push' &&
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    env:
+      GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+      GCP_WORKLOAD_IDENTITY_PROVIDER: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+      GCP_SERVICE_ACCOUNT: ${{ vars.GCP_SERVICE_ACCOUNT }}
+      POKEMON_GO_CALENDAR_ID: ${{ vars.POKEMON_GO_CALENDAR_ID }}
+      VALORANT_CALENDAR_ID: ${{ vars.VALORANT_CALENDAR_ID }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          enable-cache: true
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --locked
+      - name: Validate deployment configuration
+        shell: bash
+        run: |
+          missing=()
+          for name in GCP_PROJECT_ID GCP_WORKLOAD_IDENTITY_PROVIDER GCP_SERVICE_ACCOUNT POKEMON_GO_CALENDAR_ID VALORANT_CALENDAR_ID; do
+            [[ -n "${!name}" ]] || missing+=("$name")
+          done
+          if (( ${#missing[@]} )); then
+            printf 'Missing GitHub environment variables: %s\n' "${missing[*]}" >&2
+            exit 1
+          fi
+      - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3
+        with:
+          project_id: ${{ env.GCP_PROJECT_ID }}
+          workload_identity_provider: ${{ env.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.GCP_SERVICE_ACCOUNT }}
+      - name: Reconcile calendars
+        shell: bash
+        env:
+          SELECTED_FEED: ${{ inputs.feed || 'all' }}
+          IS_DRY_RUN: ${{ inputs.dry_run || 'false' }}
+          ALLOW_UNSAFE: ${{ inputs.allow_unsafe_deletes || 'false' }}
+        run: |
+          args=(sync --feed "$SELECTED_FEED")
+          if [[ "$IS_DRY_RUN" == "true" ]]; then args+=(--dry-run); fi
+          if [[ "$ALLOW_UNSAFE" == "true" ]]; then args+=(--allow-unsafe-deletes); fi
+          uv run calendar-sync "${args[@]}" | tee sync-summary.json
+      - name: Add workflow summary
+        if: always()
+        shell: bash
+        run: |
+          echo '## Calendar Sync v2' >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          if [[ -f sync-summary.json ]]; then tail -n 100 sync-summary.json >> "$GITHUB_STEP_SUMMARY"; fi
+          echo '```' >> "$GITHUB_STEP_SUMMARY"

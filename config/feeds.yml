@@ -1,0 +1,51 @@
+version: 2
+timezone: Europe/London
+
+safety:
+  max_deletions: 25
+  max_deletion_fraction: 0.50
+
+feeds:
+  pokemon_go:
+    enabled: true
+    calendar_id_env: POKEMON_GO_CALENDAR_ID
+    source_url: https://raw.githubusercontent.com/bigfoott/ScrapedDuck/data/events.json
+    color_id: "3"
+    include_event_types:
+      - community-day
+      - event
+      - live-event
+      - pokemon-go-fest
+      - pokemon-spotlight-hour
+      - season
+      - pokemon-go-tour
+      - raid-day
+      - elite-raids
+      - raid-battles
+      - raid-hour
+      - raid-weekend
+      - go-battle-league
+      - research
+      - max-mondays
+      - max-battles
+    all_day_event_types:
+      - event
+      - live-event
+      - pokemon-go-fest
+      - season
+      - pokemon-go-tour
+      - elite-raids
+      - raid-battles
+      - raid-weekend
+      - go-battle-league
+
+  valorant:
+    enabled: true
+    calendar_id_env: VALORANT_CALENDAR_ID
+    primary_url: https://vlr.orlandomm.net/api/v1/matches
+    fallback_provider: vlrdevapi
+    color_id: "6"
+    include_patterns:
+      - "*Valorant Champions 2026*"
+      - "*VCT 2026*"
+    exclude_patterns: []

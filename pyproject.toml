@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "calendar-sync"
+version = "2.0.0"
+description = "Synchronise Pokemon GO and Valorant events into Google Calendar."
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "google-api-python-client>=2.157,<3",
+  "google-auth>=2.37,<3",
+  "httpx>=0.28,<1",
+  "pydantic>=2.10,<3",
+  "python-dotenv>=1.0,<2",
+  "PyYAML>=6.0.2,<7",
+  "tzdata>=2025.2",
+  "vlrdevapi>=2.4,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.14,<2",
+  "pip-audit>=2.7,<3",
+  "pytest>=9.0.3,<10",
+  "pytest-cov>=6,<7",
+  "respx>=0.22,<1",
+  "ruff>=0.9,<1",
+  "types-PyYAML>=6.0.12,<7",
+]
+
+[project.scripts]
+calendar-sync = "calendar_sync.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/calendar_sync"]
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --cov=calendar_sync --cov-report=term-missing --basetemp=.pytest-tmp-v2"
+cache_dir = ".pytest-cache-v2"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["calendar_sync"]
