@@ -97,7 +97,7 @@ before manually using `--allow-unsafe-deletes`.
 2. Enable the Google Calendar API and create or reuse a service account with no downloadable key.
 3. Share both destination calendars with the service-account email and grant event editing access.
 4. Create a Google Workload Identity Pool/provider for GitHub OIDC. Restrict its attribute
-   condition to `assertion.repository == 'arekbauer/calendar-project' && assertion.ref ==
+   condition to `assertion.repository == 'arekbauer/Event-Management-Automation' && assertion.ref ==
    'refs/heads/main'`, then grant that repository principal `roles/iam.workloadIdentityUser` on the
    service account.
 5. Create a GitHub environment named `production` without required reviewers, so scheduled jobs
