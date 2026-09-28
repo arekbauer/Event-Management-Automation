@@ -5,6 +5,25 @@ from pydantic import ValidationError
 
 from calendar_sync.config import load_config
 
+LEGACY_POKEMON_WHITELIST = [
+    "community-day",
+    "event",
+    "live-event",
+    "pokemon-go-fest",
+    "pokemon-spotlight-hour",
+    "season",
+    "pokemon-go-tour",
+    "raid-day",
+    "elite-raids",
+    "raid-battles",
+    "raid-hour",
+    "raid-weekend",
+    "go-battle-league",
+    "research",
+    "max-mondays",
+    "max-battles",
+]
+
 
 def test_repository_config_is_valid() -> None:
     config = load_config(Path("config/feeds.yml"))
@@ -12,6 +31,8 @@ def test_repository_config_is_valid() -> None:
     assert config.version == 2
     assert config.timezone == "Europe/London"
     assert config.feeds.pokemon_go.enabled
+    assert config.feeds.pokemon_go.future_start_only is True
+    assert config.feeds.pokemon_go.include_event_types == LEGACY_POKEMON_WHITELIST
     assert config.feeds.valorant.enabled
 
 

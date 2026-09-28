@@ -24,6 +24,7 @@ class FeedBase(StrictModel):
 
 class PokemonConfig(FeedBase):
     source_url: str
+    future_start_only: bool = True
     include_event_types: list[str] = Field(min_length=1)
     all_day_event_types: list[str] = Field(default_factory=list)
 

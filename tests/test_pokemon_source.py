@@ -106,3 +106,23 @@ def test_nonexistent_spring_time_is_rejected() -> None:
 
     assert result.events == []
     assert result.rejected_count == 1
+
+
+def test_event_starting_today_is_excluded_like_v1() -> None:
+    source = source_for(
+        [
+            {
+                "eventID": "ongoing-1",
+                "name": "Ongoing Event",
+                "eventType": "event",
+                "link": "https://example.test/ongoing",
+                "start": "2026-09-28T08:00:00.000",
+                "end": "2026-10-05T20:00:00.000",
+                "extraData": {},
+            }
+        ]
+    )
+
+    result = source.fetch(now=datetime(2026, 9, 28, 12, tzinfo=UTC))
+
+    assert result.events == []

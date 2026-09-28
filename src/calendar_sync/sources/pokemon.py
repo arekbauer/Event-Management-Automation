@@ -46,6 +46,8 @@ class PokemonSource:
                 identifier = raw.get("eventID", "unknown")
                 warnings.append(f"{identifier}: {error}")
                 continue
+            if self.config.future_start_only and self._started_today_or_earlier(event, current):
+                continue
             if self._is_finished(event, current):
                 continue
             events.append(event)
@@ -155,6 +157,13 @@ class PokemonSource:
             return event.end_at <= now.astimezone(UTC)
         assert event.end_date is not None
         return event.end_date <= now.astimezone(self.timezone).date()
+
+    def _started_today_or_earlier(self, event: CanonicalEvent, now: datetime) -> bool:
+        today = now.astimezone(self.timezone).date()
+        if event.start_at is not None:
+            return event.start_at.astimezone(self.timezone).date() <= today
+        assert event.start_date is not None
+        return event.start_date <= today
 
     @staticmethod
     def _assert_unique(events: list[CanonicalEvent]) -> None:
