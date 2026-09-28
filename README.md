@@ -103,6 +103,7 @@ before manually using `--allow-unsafe-deletes`.
 5. Create a GitHub environment named `production` without required reviewers, so scheduled jobs
    can run unattended. Create `production-migration` with a required reviewer.
 6. Add these repository variables:
+   - `CALENDAR_SYNC_ENABLED` set to `false` until the v2 migration is complete
    - `GCP_PROJECT_ID`
    - `GCP_WORKLOAD_IDENTITY_PROVIDER` using the full `projects/.../providers/...` resource name
    - `GCP_SERVICE_ACCOUNT`
@@ -114,18 +115,19 @@ before manually using `--allow-unsafe-deletes`.
 
 ### CI/CD activation order
 
-1. Complete the Google and GitHub environment setup above before merging v2 to `main`.
+1. Complete the Google and GitHub environment setup above before merging v2 to `main`. Keep
+   `CALENDAR_SYNC_ENABLED=false` during the cutover.
 2. Push v2 on a branch and open a pull request. The `CI` workflow must pass before merge.
-3. Merge to `main`. The successful push CI run triggers `Calendar sync` automatically.
-4. For the initial cutover, cancel that first production run if the old PythonAnywhere writer or
-   untagged v1 events still exist. Disable the PythonAnywhere scheduled task.
+3. Merge to `main`. CI runs again, but automatic production sync remains skipped while the enable
+   variable is false.
+4. Disable the PythonAnywhere scheduled task so it cannot write during or after the cutover.
 5. Manually run `Calendar sync` with `dry_run=true`; review the counts in the workflow summary.
 6. Run `One-time v1 migration`, enter `DELETE_FUTURE_EVENTS`, and approve the protected
    `production-migration` environment. This is the only destructive cutover step.
 7. Run another manual dry run. A healthy result has zero creates, updates, and deletes, with all
    desired events reported as unchanged.
-8. Leave the `Calendar sync` workflow enabled. It runs at 03:17 and 15:17 Europe/London, and after
-   every successful CI run for a push to `main`.
+8. Set `CALENDAR_SYNC_ENABLED=true`. The workflow then runs at 03:17 and 15:17 Europe/London, and
+   after every successful CI run for a push to `main`.
 
 Both deployment workflows fail early with an explicit list of missing environment variables. The
 Discord webhook is optional; omit it if failure notifications are not required.
