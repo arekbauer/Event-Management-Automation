@@ -186,36 +186,6 @@ runs still work.
 The migration affects future events in the two dedicated calendars. It validates both sources and
 refuses an empty desired feed before it deletes anything.
 
-## Rollback
-
-1. Set `CALENDAR_SYNC_ENABLED=false`.
-2. Download the migration backup artifact.
-3. Ensure the target calendars do not already contain the backed-up events.
-4. Authenticate locally and run:
-
-   ```powershell
-   uv run calendar-sync restore-backup `
-     --backup backups/pre-v2.json `
-     --confirm-restore RESTORE_EVENTS
-   ```
-
-Restore inserts events. Running it over a populated calendar can create duplicates. The backup may
-contain private calendar information and must never be committed.
-
-## Retiring the legacy JSON key
-
-Do not delete the service account: GitHub WIF impersonates it. After WIF, migration, and at least
-one normal production sync have succeeded:
-
-1. confirm no other application uses `json/credentials.json`;
-2. find the matching `private_key_id` in the JSON file;
-3. disable that key under **Google Cloud → IAM & Admin → Service Accounts → Keys**;
-4. verify another GitHub dry run succeeds;
-5. permanently delete the disabled key in Google Cloud;
-6. delete the local JSON file and remove `GOOGLE_APPLICATION_CREDENTIALS` from `.env`.
-
-Deleting only the local file does not revoke the Google key.
-
 ## Troubleshooting
 
 - **The sync job is skipped:** check `CALENDAR_SYNC_ENABLED`; automatic runs require `true`.
