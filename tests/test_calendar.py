@@ -32,7 +32,7 @@ class FakeEvents:
         self.created.append(body)
         return Response(body)
 
-    def patch(self, *, eventId: str, body: dict[str, Any], **_: Any) -> Response:
+    def update(self, *, eventId: str, body: dict[str, Any], **_: Any) -> Response:
         self.updated.append((eventId, body))
         return Response(body)
 
@@ -88,7 +88,7 @@ def test_second_unchanged_run_performs_no_writes() -> None:
     assert not service.resource.deleted
 
 
-def test_changed_event_is_patched_and_new_event_is_created() -> None:
+def test_changed_event_is_updated_and_new_event_is_created() -> None:
     changed = desired_event("Updated title")
     old = existing_from(desired_event())
     new = CanonicalEvent(
@@ -113,6 +113,34 @@ def test_changed_event_is_patched_and_new_event_is_created() -> None:
     assert stats.created == 1
     assert stats.updated == 1
     assert service.resource.updated[0][0] == "google-1"
+
+
+def test_all_day_event_can_be_replaced_with_timed_event() -> None:
+    previous = CanonicalEvent(
+        feed="valorant",
+        external_id="123",
+        title="Alpha vs Bravo",
+        description="Event details",
+        source_url="https://vlr.gg/123",
+        color_id="6",
+        start_date=datetime(2026, 10, 1, tzinfo=UTC).date(),
+        end_date=datetime(2026, 10, 2, tzinfo=UTC).date(),
+    )
+    service = FakeService([existing_from(previous)])
+
+    stats = GoogleCalendarGateway(service, "Europe/London").reconcile(
+        calendar_id="calendar",
+        source=source([desired_event()]),
+        safety=SafetyConfig(),
+        now=datetime(2026, 9, 1, tzinfo=UTC),
+    )
+
+    assert stats.updated == 1
+    updated_body = service.resource.updated[0][1]
+    assert "date" not in updated_body["start"]
+    assert updated_body["start"]["dateTime"] == "2026-10-01T18:00:00+00:00"
+    assert "date" not in updated_body["end"]
+    assert updated_body["end"]["dateTime"] == "2026-10-01T20:00:00+00:00"
 
 
 def test_empty_desired_set_blocks_deletion() -> None:
