@@ -16,7 +16,7 @@ def source_for(payload: object) -> PokemonSource:
         source_url="https://example.test/events.json",
         color_id="3",
         include_event_types=["community-day", "event", "pokemon-spotlight-hour", "raid-hour"],
-        all_day_event_types=["event", "raid-hour"],
+        all_day_event_types=["event"],
     )
     return PokemonSource(
         config,
@@ -67,7 +67,7 @@ def test_configured_all_day_event_is_limited_to_its_start_date() -> None:
     assert event.end_date.isoformat() == "2026-10-03"
 
 
-def test_raid_hour_is_all_day_on_its_start_date() -> None:
+def test_raid_hour_keeps_source_start_and_end_times() -> None:
     source = source_for(
         [
             {
@@ -84,10 +84,10 @@ def test_raid_hour_is_all_day_on_its_start_date() -> None:
 
     event = source.fetch(now=datetime(2026, 10, 1, tzinfo=UTC)).events[0]
 
-    assert event.start_date.isoformat() == "2026-10-07"
-    assert event.end_date.isoformat() == "2026-10-08"
-    assert event.start_at is None
-    assert event.end_at is None
+    assert event.start_at == datetime(2026, 10, 7, 17, tzinfo=UTC)
+    assert event.end_at == datetime(2026, 10, 7, 18, tzinfo=UTC)
+    assert event.start_date is None
+    assert event.end_date is None
 
 
 def test_community_day_keeps_source_start_and_end_times() -> None:
