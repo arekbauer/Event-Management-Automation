@@ -33,6 +33,7 @@ def test_repository_config_is_valid() -> None:
     assert config.feeds.pokemon_go.future_start_only is True
     assert config.feeds.pokemon_go.include_event_types == EXPECTED_POKEMON_WHITELIST
     assert config.feeds.valorant.enabled
+    assert config.feeds.valorant.primary_wall_clock_timezone == "America/New_York"
 
 
 def test_all_day_types_must_also_be_included(tmp_path: Path) -> None:

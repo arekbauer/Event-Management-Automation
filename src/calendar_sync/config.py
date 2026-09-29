@@ -38,9 +38,19 @@ class PokemonConfig(FeedBase):
 
 class ValorantConfig(FeedBase):
     primary_url: str
+    primary_wall_clock_timezone: str = "America/New_York"
     fallback_provider: str = Field(pattern=r"^vlrdevapi$")
     include_patterns: list[str] = Field(min_length=1)
     exclude_patterns: list[str] = Field(default_factory=list)
+
+    @field_validator("primary_wall_clock_timezone")
+    @classmethod
+    def valid_primary_wall_clock_timezone(cls, value: str) -> str:
+        try:
+            ZoneInfo(value)
+        except ZoneInfoNotFoundError as error:
+            raise ValueError(f"unknown IANA timezone: {value}") from error
+        return value
 
 
 class FeedsConfig(StrictModel):

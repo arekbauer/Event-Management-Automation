@@ -116,6 +116,7 @@ valorant:
   enabled: true
   calendar_id_env: VALORANT_CALENDAR_ID
   primary_url: https://vlr.orlandomm.net/api/v1/matches
+  primary_wall_clock_timezone: America/New_York
   fallback_provider: vlrdevapi
   color_id: "6"
   include_patterns:
@@ -127,7 +128,12 @@ valorant:
 
 - `primary_url`: primary `vlresports` matches endpoint. The client adds `theme=light` and requests
   JSON.
-- `fallback_provider`: currently must be `vlrdevapi`.
+- `primary_wall_clock_timezone`: timezone of the wall-clock value returned in the primary API's
+  misleadingly named `utc` field. VLR renders that value in US Eastern time, so keep this as
+  `America/New_York` unless the provider changes its response contract. The application converts
+  it to genuine UTC before writing to Google Calendar, including daylight-saving transitions.
+- `fallback_provider`: currently must be `vlrdevapi`. The client auto-detects the timezone VLR used
+  to render its response before converting match times to UTC.
 - `include_patterns`: at least one case-insensitive shell-style glob must match.
 - `exclude_patterns`: optional case-insensitive globs; exclusions always win.
 
