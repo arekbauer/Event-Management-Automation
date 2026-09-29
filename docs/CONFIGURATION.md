@@ -49,6 +49,9 @@ An empty desired set is always considered unsafe when it would delete existing e
 workflow runs expose `allow_unsafe_deletes`, but that override should only be used after reviewing a
 dry run and confirming the source and filter change are correct.
 
+For a known partial provider response, use `--no-deletes` instead. This applies creates and updates,
+reports absent managed events as `deletions_skipped`, and guarantees that no event is deleted.
+
 ## Pokémon GO feed
 
 ```yaml
@@ -186,6 +189,10 @@ uv run calendar-sync source-smoke --feed valorant
 
 # Calculate Google changes without writing
 uv run calendar-sync sync --feed all --dry-run
+
+# Preview or apply creates and updates without deleting anything
+uv run calendar-sync sync --feed valorant --dry-run --no-deletes
+uv run calendar-sync sync --feed valorant --no-deletes
 
 # Apply reconciliation
 uv run calendar-sync sync --feed all

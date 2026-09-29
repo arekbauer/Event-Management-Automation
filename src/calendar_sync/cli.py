@@ -32,7 +32,13 @@ def build_parser() -> argparse.ArgumentParser:
     sync = subcommands.add_parser("sync", help="reconcile upstream events with Google Calendar")
     sync.add_argument("--feed", choices=["all", "pokemon_go", "valorant"], default="all")
     sync.add_argument("--dry-run", action="store_true")
-    sync.add_argument("--allow-unsafe-deletes", action="store_true")
+    deletion_mode = sync.add_mutually_exclusive_group()
+    deletion_mode.add_argument("--allow-unsafe-deletes", action="store_true")
+    deletion_mode.add_argument(
+        "--no-deletes",
+        action="store_true",
+        help="apply creates and updates while preserving every existing event",
+    )
 
     migrate = subcommands.add_parser("migrate-v1", help="one-time v1 future-event rebuild")
     migrate.add_argument("--backup", required=True)
@@ -68,6 +74,7 @@ def run_sync(
             selected_feed=args.feed,
             dry_run=args.dry_run,
             allow_unsafe_deletes=args.allow_unsafe_deletes,
+            no_deletes=args.no_deletes,
         )
     print(json.dumps({"results": [vars_stat(stat) for stat in stats], "errors": errors}, indent=2))
     if errors:
