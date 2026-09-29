@@ -95,5 +95,6 @@ class SyncStats:
     created: int
     updated: int
     deleted: int
+    deletions_skipped: int
     unchanged: int
     dry_run: bool

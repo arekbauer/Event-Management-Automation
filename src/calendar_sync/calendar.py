@@ -36,6 +36,7 @@ class GoogleCalendarGateway:
         safety: SafetyConfig,
         dry_run: bool = False,
         allow_unsafe_deletes: bool = False,
+        no_deletes: bool = False,
         now: datetime | None = None,
     ) -> SyncStats:
         current = now or datetime.now(UTC)
@@ -68,11 +69,12 @@ class GoogleCalendarGateway:
             else:
                 to_update.append((old, desired_event))
 
-        stale = [
+        stale_candidates = [
             old
             for key, old in existing_by_id.items()
             if key not in desired and self._is_current_or_future(old, current)
         ]
+        stale = [] if no_deletes else stale_candidates
         self._check_deletions(
             stale_count=len(stale),
             existing_count=len(existing_by_id),
@@ -109,6 +111,7 @@ class GoogleCalendarGateway:
             created=len(to_create),
             updated=len(to_update),
             deleted=len(stale),
+            deletions_skipped=len(stale_candidates) if no_deletes else 0,
             unchanged=unchanged,
             dry_run=dry_run,
         )

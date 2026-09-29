@@ -22,6 +22,10 @@ on:
         description: Override deletion safety limits
         type: boolean
         default: false
+      no_deletes:
+        description: Apply creates and updates but preserve all existing events
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -83,10 +87,12 @@ jobs:
           SELECTED_FEED: ${{ inputs.feed || 'all' }}
           IS_DRY_RUN: ${{ inputs.dry_run || 'false' }}
           ALLOW_UNSAFE: ${{ inputs.allow_unsafe_deletes || 'false' }}
+          NO_DELETES: ${{ inputs.no_deletes || 'false' }}
         run: |
           args=(sync --feed "$SELECTED_FEED")
           if [[ "$IS_DRY_RUN" == "true" ]]; then args+=(--dry-run); fi
           if [[ "$ALLOW_UNSAFE" == "true" ]]; then args+=(--allow-unsafe-deletes); fi
+          if [[ "$NO_DELETES" == "true" ]]; then args+=(--no-deletes); fi
           uv run calendar-sync "${args[@]}" | tee sync-summary.json
       - name: Add workflow summary
         if: always()

@@ -49,6 +49,9 @@ An empty desired set is always considered unsafe when it would delete existing e
 workflow runs expose `allow_unsafe_deletes`, but that override should only be used after reviewing a
 dry run and confirming the source and filter change are correct.
 
+For a known partial provider response, use `--no-deletes` instead. This applies creates and updates,
+reports absent managed events as `deletions_skipped`, and guarantees that no event is deleted.
+
 ## Pokémon GO feed
 
 ```yaml
@@ -116,6 +119,7 @@ valorant:
   enabled: true
   calendar_id_env: VALORANT_CALENDAR_ID
   primary_url: https://vlr.orlandomm.net/api/v1/matches
+  primary_wall_clock_timezone: America/New_York
   fallback_provider: vlrdevapi
   color_id: "6"
   include_patterns:
@@ -127,7 +131,12 @@ valorant:
 
 - `primary_url`: primary `vlresports` matches endpoint. The client adds `theme=light` and requests
   JSON.
-- `fallback_provider`: currently must be `vlrdevapi`.
+- `primary_wall_clock_timezone`: timezone of the wall-clock value returned in the primary API's
+  misleadingly named `utc` field. VLR renders that value in US Eastern time, so keep this as
+  `America/New_York` unless the provider changes its response contract. The application converts
+  it to genuine UTC before writing to Google Calendar, including daylight-saving transitions.
+- `fallback_provider`: currently must be `vlrdevapi`. The client auto-detects the timezone VLR used
+  to render its response before converting match times to UTC.
 - `include_patterns`: at least one case-insensitive shell-style glob must match.
 - `exclude_patterns`: optional case-insensitive globs; exclusions always win.
 
@@ -180,6 +189,10 @@ uv run calendar-sync source-smoke --feed valorant
 
 # Calculate Google changes without writing
 uv run calendar-sync sync --feed all --dry-run
+
+# Preview or apply creates and updates without deleting anything
+uv run calendar-sync sync --feed valorant --dry-run --no-deletes
+uv run calendar-sync sync --feed valorant --no-deletes
 
 # Apply reconciliation
 uv run calendar-sync sync --feed all

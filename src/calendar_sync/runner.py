@@ -31,6 +31,7 @@ class SyncRunner:
         selected_feed: str = "all",
         dry_run: bool = False,
         allow_unsafe_deletes: bool = False,
+        no_deletes: bool = False,
     ) -> tuple[list[SyncStats], list[str]]:
         stats: list[SyncStats] = []
         errors: list[str] = []
@@ -46,6 +47,7 @@ class SyncRunner:
                     safety=self.config.safety,
                     dry_run=dry_run,
                     allow_unsafe_deletes=allow_unsafe_deletes,
+                    no_deletes=no_deletes,
                 )
                 stats.append(result)
                 self.logger.info("sync_result %s", asdict(result))

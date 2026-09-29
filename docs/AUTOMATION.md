@@ -45,6 +45,11 @@ Manual runs remain available while the flag is false, which allows safe setup an
 - `feed`: `all`, `pokemon_go`, or `valorant`.
 - `dry_run`: calculate and report changes without writing. Defaults to `true`.
 - `allow_unsafe_deletes`: bypass configured deletion thresholds. Defaults to `false`.
+- `no_deletes`: apply creates and updates while preserving every existing event. The summary reports
+  preserved stale events as `deletions_skipped`. Defaults to `false`.
+
+`allow_unsafe_deletes` and `no_deletes` are mutually exclusive. Use `no_deletes` when a provider
+returns a known partial schedule and you still need to apply safe creates or updates.
 
 The workflow writes the final JSON output into the GitHub Actions job summary.
 

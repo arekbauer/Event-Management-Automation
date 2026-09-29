@@ -170,6 +170,37 @@ def test_dry_run_reports_without_writing() -> None:
     assert not service.resource.created
 
 
+def test_no_deletes_applies_updates_and_reports_preserved_stale_events() -> None:
+    changed = desired_event("Corrected title")
+    stale = CanonicalEvent(
+        feed="valorant",
+        external_id="stale-456",
+        title="Stale fixture",
+        description="Old source data",
+        source_url="https://vlr.gg/456",
+        color_id="6",
+        start_at=datetime(2026, 10, 2, 18, tzinfo=UTC),
+        end_at=datetime(2026, 10, 2, 20, tzinfo=UTC),
+    )
+    service = FakeService(
+        [existing_from(desired_event()), existing_from(stale, event_id="google-stale")]
+    )
+
+    stats = GoogleCalendarGateway(service, "Europe/London").reconcile(
+        calendar_id="calendar",
+        source=source([changed]),
+        safety=SafetyConfig(max_deletions=0, max_deletion_fraction=0),
+        no_deletes=True,
+        now=datetime(2026, 9, 1, tzinfo=UTC),
+    )
+
+    assert stats.updated == 1
+    assert stats.deleted == 0
+    assert stats.deletions_skipped == 1
+    assert service.resource.updated[0][0] == "google-1"
+    assert service.resource.deleted == []
+
+
 def test_manual_event_is_never_deleted() -> None:
     manual = {
         "id": "manual-1",

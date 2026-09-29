@@ -42,6 +42,7 @@ feeds:
     enabled: true
     calendar_id_env: VALORANT_CALENDAR_ID
     primary_url: https://vlr.orlandomm.net/api/v1/matches
+    primary_wall_clock_timezone: America/New_York
     fallback_provider: vlrdevapi
     color_id: "6"
     include_patterns:

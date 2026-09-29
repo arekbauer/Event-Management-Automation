@@ -6,6 +6,7 @@ import re
 from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 from typing import Any, cast
+from zoneinfo import ZoneInfo
 
 from calendar_sync.config import ValorantConfig
 from calendar_sync.http import JsonHttpClient, SourceRequestError
@@ -79,7 +80,7 @@ class ValorantSource:
         from vlrdevapi import VLRClient  # type: ignore[attr-defined]
 
         try:
-            with VLRClient(timeout=15, max_retries=3) as client:
+            with VLRClient(timeout=15, max_retries=3, auto_detect_tz=True) as client:
                 page = client.matches.upcoming(page=1)
         except Exception as error:
             raise SourceRequestError(f"vlrdevapi fallback failed: {error}") from error
@@ -142,7 +143,7 @@ class ValorantSource:
         team1 = self._team_name(teams[0])
         team2 = self._team_name(teams[1])
         match_id = self._required_text(raw, "id")
-        start = self._parse_utc(self._required_text(raw, "utc"))
+        start = self._parse_primary_wall_clock(self._required_text(raw, "utc"))
         series = self._required_text(raw, "event")
         tournament = self._required_text(raw, "tournament")
         link = f"https://www.vlr.gg/{match_id}"
@@ -194,6 +195,14 @@ class ValorantSource:
             fnmatch.fnmatch(haystack, pattern.casefold())
             for pattern in self.config.include_patterns
         )
+
+    def _parse_primary_wall_clock(self, value: str) -> datetime:
+        """Correct the primary API's falsely UTC-labelled VLR wall-clock value."""
+        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        wall_clock = parsed.replace(tzinfo=None)
+        return wall_clock.replace(
+            tzinfo=ZoneInfo(self.config.primary_wall_clock_timezone)
+        ).astimezone(UTC)
 
     @staticmethod
     def _parse_utc(value: str) -> datetime:
